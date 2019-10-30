@@ -4,7 +4,7 @@ import IMovie from '../../interfaces/IMovie';
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.less']
+  styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
 
