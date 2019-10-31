@@ -9,6 +9,10 @@ export class MoviePageComponent implements OnInit {
 
   constructor() { }
 
+  openOrder(event){
+    window.location.replace('http://localhost:4301/order');
+  }
+
   ngOnInit() {
   }
 

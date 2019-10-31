@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import IMovie from '../../interfaces/IMovie';
 import {MoviesService} from '../../services/movie.service';
 
-
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
@@ -60,9 +59,8 @@ export class MoviesListComponent implements OnInit {
         'Его новому другу — крупной суммы денег. Паре головорезов — головы друга. Молодой медсестре — любви. ' +
         'А ему — путешествий на плоту, погонь, пылающих костров и немного арахисового масла.',
       type: 'comedy',
-      image:
-        'https://upload.wikimedia.org/wikipedia/ru/6/65/%D0%90%D1%80%D0%B0%D1%85%D0%B8%D1%81%D0%BE%D0%B2%D1%8B%D0%B9_%D1%81%D0%BE%D0%BA%D0%BE%D0%BB.jpg'}
-      ];
+      image: 'https://st.cherinfo.ru/afisha/main/4085.jpg'}
+  ];
 
     // private movieService = new MoviesService();
 

@@ -11,8 +11,8 @@ export class MovieComponent implements OnInit {
   constructor() { }
   @Input('data') data: IMovie;
 
-  myEvent(event){
-    console.log('event');
+  openMovie(event){
+    window.location.replace('http://localhost:4301/movie');
   }
 
   ngOnInit() {

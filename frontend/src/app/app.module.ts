@@ -8,6 +8,9 @@ import {OrderSeatsComponent} from "./modules/order-seats/order-seats.component";
 import {MoviePageComponent} from "./modules/movie-page/movie-page.component";
 import {ToolbarComponent} from "./modules/toolbar/toolbar.component";
 import {MovieComponent} from "./modules/movie/movie.component";
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 const routes: Routes = [
   {path: '', component: MoviesListComponent},
@@ -27,7 +30,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes )
+    RouterModule.forRoot(routes),
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
