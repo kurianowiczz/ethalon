@@ -5,21 +5,21 @@ import java.util.Objects;
 
 @Entity
 @Table(name="tickets")
-public class Tickets {
+public class Ticket {
 
     private Long id;
     private int line;
     private int seat;
     private Long seanceId;
 
-    public Tickets(Long id, int line, int seat, Long seanceId) {
+    public Ticket(Long id, int line, int seat, Long seanceId) {
         this.id = id;
         this.line = line;
         this.seat = seat;
         this.seanceId = seanceId;
     }
 
-    public Tickets() {
+    public Ticket() {
     }
 
     @Id
@@ -66,8 +66,8 @@ public class Tickets {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Tickets)) return false;
-        Tickets tickets = (Tickets) o;
+        if (!(o instanceof Ticket)) return false;
+        Ticket tickets = (Ticket) o;
         return line == tickets.line &&
                 seat == tickets.seat &&
                 Objects.equals(id, tickets.id) &&
