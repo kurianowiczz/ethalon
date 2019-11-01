@@ -10,7 +10,7 @@ export class MoviesService {
 
 
   getAll() {
-    return this.http.get<IMovie[]>(`${this.apiBaseUrl}/movies`);
+    return this.http.get<IMovie[]>(`${this.apiBaseUrl}/all/all`);
   }
 
   getOne(id) {
