@@ -4,9 +4,11 @@ import com.netcracker.edu.backend.entity.Payment;
 import com.netcracker.edu.backend.repository.PaymentRepository;
 import com.netcracker.edu.backend.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PaymentServiceImpl implements PaymentService {
     @Autowired
     public PaymentRepository paymentRepository;

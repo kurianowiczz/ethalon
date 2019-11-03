@@ -4,10 +4,11 @@ import com.netcracker.edu.backend.entity.MovieSeance;
 import com.netcracker.edu.backend.repository.MovieSeanceRepository;
 import com.netcracker.edu.backend.service.MovieSeanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class MovieSeanceServiceImpl implements MovieSeanceService {
     @Autowired
     private MovieSeanceRepository movieSeanceRepository;

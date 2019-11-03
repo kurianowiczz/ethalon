@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/api/movies")
 public class MoviesController {
     @Autowired
-    MovieService service;
+    private MovieService service;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List getAllMovies() {

@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping("/api/movieSeance")
 public class MovieSeancesController {
 
+    @Autowired
     private MovieSeanceService movieSeanceService;
 
-    @Autowired
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<MovieSeance> getAllMovieSeances(){
         return movieSeanceService.getAll();

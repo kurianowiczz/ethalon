@@ -4,11 +4,12 @@ import com.netcracker.edu.backend.entity.Ticket;
 import com.netcracker.edu.backend.repository.TicketRepository;
 import com.netcracker.edu.backend.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
+@Service
 public class TicketServiceImpl implements TicketService {
 
     @Autowired

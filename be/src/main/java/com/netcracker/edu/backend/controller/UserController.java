@@ -2,14 +2,16 @@ package com.netcracker.edu.backend.controller;
 
 import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
+    @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)

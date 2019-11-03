@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/payment")
+@RequestMapping("/api/payment")
 public class PaymentController {
 
-    PaymentService paymentService;
-
     @Autowired
+    private PaymentService paymentService;
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Payment> getAllPayments(){
         return paymentService.getAll();
