@@ -5,21 +5,21 @@ import java.util.Objects;
 
 @Entity
 @Table(name="movieseances")
-public class MovieSeances {
+public class MovieSeance {
 
     private Long id;
     private Long movieId;
     private String dateTime;
     private double price;
 
-    public MovieSeances(Long id, Long movieId, String dateTime, double price) {
+    public MovieSeance(Long id, Long movieId, String dateTime, double price) {
         this.id = id;
         this.movieId = movieId;
         this.dateTime = dateTime;
         this.price = price;
     }
 
-    public MovieSeances() {
+    public MovieSeance() {
     }
 
     @Id
@@ -67,7 +67,7 @@ public class MovieSeances {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MovieSeances that = (MovieSeances) o;
+        MovieSeance that = (MovieSeance) o;
         return Double.compare(that.price, price) == 0 &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(movieId, that.movieId) &&
