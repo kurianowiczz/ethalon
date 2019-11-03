@@ -1,39 +1,39 @@
 package com.netcracker.edu.fapi.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
-    private long id;
-    private String login;
+    private Long id;
+    private String userName;
     private String password;
     private String role;
+    private double cash;
+
+
+    public User(Long id, String userName, String password, String role, double cash) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.cash = cash;
+    }
 
     public User() {
     }
 
-    public User(long id, String login, String password, String role) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -52,13 +52,22 @@ public class User {
         this.role = role;
     }
 
+    public double getCash() {
+        return cash;
+    }
+
+    public void setCash(double cash) {
+        this.cash = cash;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", cash=" + cash +
                 '}';
     }
 }
