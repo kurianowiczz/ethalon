@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.controller;
 
+<<<<<<< HEAD
 import com.netcracker.edu.fapi.models.Movie;
 import com.netcracker.edu.fapi.service.MovieServise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,7 @@ public class MoviesController {
         }
         return null;
     }
+=======
+public class MoviesController {
+>>>>>>> 1d503208be752fba7dd47b42b8582f9cc7e58c73
 }
