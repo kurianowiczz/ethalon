@@ -1,10 +1,6 @@
 package com.netcracker.edu.fapi.service.impl;
-
-<<<<<<< HEAD
 import com.netcracker.edu.fapi.models.Movie;
-import com.netcracker.edu.fapi.models.User;
-import com.netcracker.edu.fapi.service.MovieServise;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.netcracker.edu.fapi.service.MovieService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service("movieService")
-public class MovieServiceImpl implements MovieServise {
+public class MovieServiceImpl implements MovieService {
 
     @Value("${backend.server.url}")
     private String backendServerUrl;
@@ -39,7 +35,4 @@ public class MovieServiceImpl implements MovieServise {
         return restTemplate.postForEntity(backendServerUrl + "all/movies/", movie, Movie.class).getBody();
     }
 
-=======
-public class MovieService {
->>>>>>> 1d503208be752fba7dd47b42b8582f9cc7e58c73
 }

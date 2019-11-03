@@ -1,17 +1,8 @@
-<<<<<<< HEAD
+
 package com.netcracker.edu.fapi.models;
 
 import java.util.Objects;
 
-=======
-package com.netcracker.edu.backend.entity;
-
-import javax.persistence.*;
-import java.util.Objects;
-
-@Entity
-@Table(name="movies")
->>>>>>> 1d503208be752fba7dd47b42b8582f9cc7e58c73
 public class Movie {
 
     private Long id;
@@ -30,12 +21,6 @@ public class Movie {
 
     }
 
-<<<<<<< HEAD
-=======
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
->>>>>>> 1d503208be752fba7dd47b42b8582f9cc7e58c73
     public Long getId() {
         return id;
     }
@@ -44,11 +29,6 @@ public class Movie {
         this.id = id;
     }
 
-<<<<<<< HEAD
-=======
-    @Basic
-    @Column(name="name")
->>>>>>> 1d503208be752fba7dd47b42b8582f9cc7e58c73
     public String getName() {
         return name;
     }
@@ -57,11 +37,6 @@ public class Movie {
         this.name = name;
     }
 
-<<<<<<< HEAD
-=======
-    @Basic
-    @Column(name="type")
->>>>>>> 1d503208be752fba7dd47b42b8582f9cc7e58c73
     public String getType() {
         return type;
     }
@@ -70,11 +45,6 @@ public class Movie {
         this.type = type;
     }
 
-<<<<<<< HEAD
-=======
-    @Basic
-    @Column(name="description")
->>>>>>> 1d503208be752fba7dd47b42b8582f9cc7e58c73
     public String getDescription() {
         return description;
     }
