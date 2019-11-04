@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     public User update(User user) {
 //        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/user", user, User.class).getBody();
+        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/user/", user, User.class).getBody();
     }
 
     @Override
