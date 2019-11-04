@@ -14,6 +14,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public List<User> getAllUsers() {
+
+        return userService.findAll();
+    }
+
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id) {
         User user = new User();
@@ -26,11 +32,6 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<User> getAllUsers() {
-
-        return userService.findAll();
-    }
 
     @RequestMapping(method = RequestMethod.POST)
     public User updateUser(@RequestBody User user) {

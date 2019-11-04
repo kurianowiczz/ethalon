@@ -22,11 +22,13 @@ public class MovieSeancesController {
 
     @RequestMapping(method = RequestMethod.POST)
     public MovieSeance saveSeance(@RequestBody MovieSeance movieSeance){
+
         return movieSeanceService.save(movieSeance);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteSession(@PathVariable(name = "id") Long id){
+
         movieSeanceService.delete(id);
     }
 
