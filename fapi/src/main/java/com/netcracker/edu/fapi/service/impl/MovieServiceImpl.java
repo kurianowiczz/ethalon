@@ -13,7 +13,8 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService {
 
     @Value("${backend.server.url}")
-    private static String BACKEND_SERVER_URL;
+    private String BACKEND_SERVER_URL;
+//    private String backendServerUrl;
 
     @Override
     public List<Movie> findAll() {

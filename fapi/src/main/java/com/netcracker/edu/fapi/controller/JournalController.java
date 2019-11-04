@@ -15,7 +15,7 @@ public class JournalController {
     @Autowired
     private JournalService journalService;
 
-    @RequestMapping(value = "/journal", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Journal> getAll() {
         return journalService.getAll();
     }
@@ -25,12 +25,12 @@ public class JournalController {
         return journalService.update(journal);
     }
 
-    @RequestMapping(value = "/journal/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteJournalById(@PathVariable(name = "id") long id) {
         journalService.delete(id);
     }
 
-    @RequestMapping(value = "/journal/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public ResponseEntity<Journal> getByUserId(@PathVariable(name = "userId") long userId) {
         Journal journal = journalService.getByUserId(userId);
         return journal != null ? ResponseEntity.ok(journal) : ResponseEntity.notFound().build();

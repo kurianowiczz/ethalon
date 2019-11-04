@@ -17,12 +17,12 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @RequestMapping(value = "/payment", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Payment> getAllPayments() {
         return paymentService.getAll();
     }
 
-    @RequestMapping(value = "/payment", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public Payment updatePayment(@RequestBody Payment payment){
 
         return paymentService.update(payment);

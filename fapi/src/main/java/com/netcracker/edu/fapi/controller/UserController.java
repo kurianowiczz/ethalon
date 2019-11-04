@@ -17,12 +17,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return userService.findAll();
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserById(@PathVariable(name = "id") long id) {
         User user = userService.findById(id);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
@@ -33,7 +33,7 @@ public class UserController {
         return userService.update(user);
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteUserById(@PathVariable(name = "id") long id) {
         userService.delete(id);
     }

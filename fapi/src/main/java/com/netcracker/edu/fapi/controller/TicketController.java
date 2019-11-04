@@ -14,17 +14,17 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    @RequestMapping(value = "/ticket", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Ticket> getAllTickets(){
         return ticketService.getAll();
     }
 
-    @RequestMapping(value = "/ticket", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public Ticket updateTicket(@RequestBody Ticket ticket) {
         return ticketService.update(ticket);
     }
 
-    @RequestMapping(value = "/ticket/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteTicketById(@PathVariable(name = "id") long id) {
         ticketService.delete(id);
     }
