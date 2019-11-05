@@ -27,7 +27,7 @@ public class MovieSeanceServiceImpl implements MovieSeanceService {
     @Override
     public MovieSeance findByDateTime(String dateTime) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(BACKEND_SERVER_URL + "/api/movieSeances/" + dateTime, MovieSeance.class);
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "/api/movieSeances/dateTime" + dateTime, MovieSeance.class);
     }
 
     @Override

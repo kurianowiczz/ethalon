@@ -16,9 +16,12 @@ public class MoviesController {
     private MovieService movieService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<List<Movie>> getAllMovies(){
-
-        return ResponseEntity.ok(movieService.findAll());
+//    public ResponseEntity<List<Movie>> getAllMovies(){
+//
+//        return ResponseEntity.ok(movieService.findAll());
+//    }
+    public List<Movie> getAllMovies(){
+        return movieService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

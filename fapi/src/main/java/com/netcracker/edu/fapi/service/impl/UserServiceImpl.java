@@ -14,7 +14,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Value("http://localhost:8080/")
-    private static String BACKEND_SERVER_URL;
+    private String BACKEND_SERVER_URL;
 
     @Override
     public List<User> findAll() {
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/user/" + id, User.class);
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "/api/user/" + id, User.class);
     }
 
     @Override

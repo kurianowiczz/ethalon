@@ -12,6 +12,8 @@ public class Movie {
     private String type;
     private String description;
 
+//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+
     public Movie(Long id, String name, String type, String description) {
         this.id = id;
         this.name = name;

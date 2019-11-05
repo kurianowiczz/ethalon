@@ -20,7 +20,7 @@ public class JournalServiceImpl implements JournalService {
     @Override
     public List<Journal> getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Journal[] journalsResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/journal/", Journal[].class);
+        Journal[] journalsResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/journal/all", Journal[].class);
         return journalsResponse == null ? Collections.emptyList() : Arrays.asList(journalsResponse);
 
     }
@@ -40,7 +40,7 @@ public class JournalServiceImpl implements JournalService {
     @Override
     public Journal getByUserId(Long userId) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/journal/" + userId, Journal.class);
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/journal/userId/" + userId, Journal.class);
     }
 
 }

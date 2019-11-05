@@ -19,7 +19,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public List<Ticket> getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Ticket[] ticketsResponce = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/ticket/", Ticket[].class);
+        Ticket[] ticketsResponce = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/ticket/all", Ticket[].class);
         return ticketsResponce == null ? Collections.emptyList() : Arrays.asList(ticketsResponce);
     }
 

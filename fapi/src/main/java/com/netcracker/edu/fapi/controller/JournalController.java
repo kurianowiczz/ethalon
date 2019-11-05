@@ -20,7 +20,7 @@ public class JournalController {
         return journalService.getAll();
     }
 
-    @RequestMapping(value = "/journal", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Journal updateJournal(@RequestBody Journal journal) {
         return journalService.update(journal);
     }

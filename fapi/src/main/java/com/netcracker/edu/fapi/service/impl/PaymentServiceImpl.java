@@ -20,7 +20,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<Payment> getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Payment[] paymentsResponce = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/payment", Payment[].class);
+        Payment[] paymentsResponce = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/payment/all", Payment[].class);
         return paymentsResponce == null ? Collections.emptyList() : Arrays.asList(paymentsResponce);
 
     }

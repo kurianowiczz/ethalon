@@ -19,7 +19,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> findAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Movie[] moviesResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/movies/all ", Movie[].class);
+        Movie[] moviesResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/movies/all ", Movie[].class);
         return moviesResponse == null ? Collections.emptyList() : Arrays.asList(moviesResponse);
 
     }
@@ -27,13 +27,13 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(BACKEND_SERVER_URL + "movies/all" + id);
+        restTemplate.delete(BACKEND_SERVER_URL + "/api/movies/" + id);
     }
 
     @Override
     public Movie save(Movie movie) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(BACKEND_SERVER_URL + "all/movies/", movie, Movie.class).getBody();
+        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/movies/", movie, Movie.class).getBody();
     }
 
 }
