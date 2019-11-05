@@ -5,15 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.css']
 })
-export class MoviePageComponent implements OnInit {
-
-  constructor() { }
+export class MoviePageComponent {
 
   openOrder(event){
     window.location.replace('http://localhost:4301/order');
   }
 
-  ngOnInit() {
-  }
 
 }

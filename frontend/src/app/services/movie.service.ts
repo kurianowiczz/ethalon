@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import IMovie from '../interfaces/IMovie';
+import {IMovie} from '../interfaces/IMovie';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {

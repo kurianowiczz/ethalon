@@ -3,11 +3,11 @@ import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
-import {MoviesListComponent} from "./modules/movies-list/movies-list.component";
-import {OrderSeatsComponent} from "./modules/order-seats/order-seats.component";
-import {MoviePageComponent} from "./modules/movie-page/movie-page.component";
-import {ToolbarComponent} from "./modules/toolbar/toolbar.component";
-import {MovieComponent} from "./modules/movie/movie.component";
+import {MoviesListComponent} from "./components/movies-list/movies-list.component";
+import {OrderSeatsComponent} from "./components/order-seats/order-seats.component";
+import {MoviePageComponent} from "./components/movie-page/movie-page.component";
+import {ToolbarComponent} from "./components/toolbar/toolbar.component";
+import {MovieComponent} from "./components/movie/movie.component";
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
