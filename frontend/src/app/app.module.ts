@@ -10,6 +10,7 @@ import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {MovieComponent} from "./components/movie/movie.component";
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PopupComponent } from './components/popup/popup.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
     MovieComponent,
     ToolbarComponent,
     MoviePageComponent,
-    OrderSeatsComponent
+    OrderSeatsComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

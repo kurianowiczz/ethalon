@@ -1,6 +1,22 @@
 <div class="toolbar">
   <div class="buttons">
-    <button class="btn">Вход</button>
-    <button class="btn">Регистрация</button>
+    <button class="btn" (click)="openSignIn()">Вход</button>
+    <button class="btn" (click)="openSignUp()">Регистрация</button>
   </div>
 </div>
+
+<app-popup [onClose]="closeSignUp.bind(this)" [isVisible]="showSignUp">
+  <p>email</p>
+  <input type="email">
+  <p>password</p>
+  <input type="password">
+  <button>Зарегистрироваться</button>
+</app-popup>
+
+<app-popup [onClose]="closeSignIn.bind(this)" [isVisible]="showSignIn">
+  <p>email</p>
+  <input type="email">
+  <p>password</p>
+  <input type="password">
+  <button>Войти</button>
+</app-popup>

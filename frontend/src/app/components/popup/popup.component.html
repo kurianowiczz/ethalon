@@ -1,0 +1,6 @@
+<div [class]="isVisible ? 'fullscreen' : 'none'" (click)="stopPropagation($event)" >
+  <div class="popup">
+    <button class="close" (click)="onClose()">+</button>
+    <ng-content></ng-content>
+  </div>
+</div>
