@@ -1,5 +1,9 @@
 <div class="container">
 
+  <div class="poster">
+    <h1>poster</h1>
+  </div>
+
 
   <div class="seance-container">
     <p>Сеансы:</p>
@@ -11,34 +15,36 @@
     </div>
   </div>
 
-
+  <div class="select">
     <div class="seats-container">
       <div class="row" *ngFor="let row of seats; index as rowIndex" >
         <div class="column" *ngFor="let seat of row; index as columnIndex" >
-          <div [class]="seat" (click)="processSeat(rowIndex, columnIndex)">
-          </div>
+          <div [class]="seat" (click)="processSeat(rowIndex, columnIndex)"></div>
         </div>
       </div>
+    </div>
 
-      <div class="btn-buy">
-        <button>Купить</button>
+    <div class="history">
+      <div class="seat-history">
+        <div class="history-row">
+          <div class="available"></div>
+          <div class="description">свободно</div>
+        </div>
+
+        <div class="history-row">
+          <div class="reserved"></div>
+          <div class="description">занято</div>
+        </div>
+
+        <div class="history-row">
+          <div class="processing"></div>
+          <div class="description">в процессе</div>
+        </div>
       </div>
     </div>
 
-  <div class="seat-history">
-    <div class="history-row">
-      <div class="available"></div>
-      <div class="description">свободно</div>
-    </div>
-
-    <div class="history-row">
-      <div class="reserved"></div>
-      <div class="description">звнято</div>
-    </div>
-
-    <div class="history-row">
-      <div class="processing"></div>
-      <div class="description">в процессе</div>
+    <div class="btn-buy">
+      <button>Купить</button>
     </div>
   </div>
 
