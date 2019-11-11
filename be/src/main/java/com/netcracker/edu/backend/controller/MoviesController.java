@@ -20,7 +20,7 @@ public class MoviesController {
         return service.getAllMovies();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<Movie> getMovieById(@PathVariable(name = "id") Long id) {
         Optional<Movie> movie = service.getMovieById(id);
         if (movie.isPresent()) {
@@ -30,7 +30,7 @@ public class MoviesController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public Movie deleteMovie(@PathVariable(name = "id") Long id) {
         return service.delete(id);
     }

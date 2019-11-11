@@ -14,13 +14,13 @@ import java.util.List;
 public class PaymentServiceImpl implements PaymentService {
 
     @Value("http://localhost:8080/")
-    private static String BACKEND_SERVER_URL;
+    private String BACKEND_SERVER_URL;
 
 
     @Override
     public List<Payment> getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Payment[] paymentsResponce = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/payment/all", Payment[].class);
+        Payment[] paymentsResponce = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/payments/all", Payment[].class);
         return paymentsResponce == null ? Collections.emptyList() : Arrays.asList(paymentsResponce);
 
     }
@@ -28,7 +28,13 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment update(Payment payment) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/payment/", payment, Payment.class).getBody();
+        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/payments/", payment, Payment.class).getBody();
 
+    }
+
+    @Override
+    public Payment findById(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/payments/id/" + id, Payment.class);
     }
 }

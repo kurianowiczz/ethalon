@@ -3,15 +3,14 @@ package com.netcracker.edu.fapi.controller;
 import com.netcracker.edu.fapi.models.Payment;
 import com.netcracker.edu.fapi.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/payment")
+@RequestMapping("/api/payments")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PaymentController {
 
     @Autowired
@@ -20,6 +19,12 @@ public class PaymentController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Payment> getAllPayments() {
         return paymentService.getAll();
+    }
+
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Payment> getPaymentById(@PathVariable(name = "id") long id) {
+        Payment payment = paymentService.findById(id);
+        return payment != null ? ResponseEntity.ok(payment) : ResponseEntity.notFound().build();
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)

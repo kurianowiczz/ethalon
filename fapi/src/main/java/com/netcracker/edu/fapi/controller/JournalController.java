@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/journal")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class JournalController {
     @Autowired
     private JournalService journalService;
@@ -20,19 +21,25 @@ public class JournalController {
         return journalService.getAll();
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public Journal updateJournal(@RequestBody Journal journal) {
         return journalService.update(journal);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteJournalById(@PathVariable(name = "id") long id) {
         journalService.delete(id);
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userId/{userId}", method = RequestMethod.GET)
     public ResponseEntity<Journal> getByUserId(@PathVariable(name = "userId") long userId) {
         Journal journal = journalService.getByUserId(userId);
+        return journal != null ? ResponseEntity.ok(journal) : ResponseEntity.notFound().build();
+    }
+
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Journal> getById(@PathVariable(name = "id") long id) {
+        Journal journal = journalService.getById(id);
         return journal != null ? ResponseEntity.ok(journal) : ResponseEntity.notFound().build();
     }
 }

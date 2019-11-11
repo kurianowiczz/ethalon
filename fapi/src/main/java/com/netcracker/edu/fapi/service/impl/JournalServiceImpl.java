@@ -15,7 +15,7 @@ import java.util.List;
 public class JournalServiceImpl implements JournalService {
 
     @Value("http://localhost:8080/")
-    private static String BACKEND_SERVER_URL;
+    private String BACKEND_SERVER_URL;
 
     @Override
     public List<Journal> getAll() {
@@ -34,13 +34,19 @@ public class JournalServiceImpl implements JournalService {
     @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(BACKEND_SERVER_URL + "api/journal/" + id);
+        restTemplate.delete(BACKEND_SERVER_URL + "api/journal/id" + id);
     }
 
     @Override
     public Journal getByUserId(Long userId) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(BACKEND_SERVER_URL + "api/journal/userId/" + userId, Journal.class);
+    }
+
+    @Override
+    public Journal getById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/journal/id/" + id, Journal.class);
     }
 
 }

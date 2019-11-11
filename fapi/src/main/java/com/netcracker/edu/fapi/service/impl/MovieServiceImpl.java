@@ -25,9 +25,15 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public Movie findById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/movies/id/" + id, Movie.class);
+    }
+
+    @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(BACKEND_SERVER_URL + "/api/movies/" + id);
+        restTemplate.delete(BACKEND_SERVER_URL + "/api/movies/id/" + id);
     }
 
     @Override

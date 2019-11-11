@@ -1,7 +1,10 @@
 package com.netcracker.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="movies")
@@ -11,22 +14,26 @@ public class Movie {
     private String name;
     private String type;
     private String description;
+    private String image;
 
-//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-
-    public Movie(Long id, String name, String type, String description) {
+    public Movie(Long id, String name, String type, String description, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.description = description;
+        this.image = image;
     }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "movie")
+    @JsonManagedReference
+    private Set<MovieSeance> movieSeances;
 
     public Movie() {
 
     }
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
@@ -37,7 +44,7 @@ public class Movie {
     }
 
     @Basic
-    @Column(name="name")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -47,7 +54,7 @@ public class Movie {
     }
 
     @Basic
-    @Column(name="type")
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -57,13 +64,23 @@ public class Movie {
     }
 
     @Basic
-    @Column(name="description")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Basic
+    @Column(name = "image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -74,12 +91,13 @@ public class Movie {
         return Objects.equals(id, movie.id) &&
                 Objects.equals(name, movie.name) &&
                 Objects.equals(type, movie.type) &&
-                Objects.equals(description, movie.description);
+                Objects.equals(description, movie.description) &&
+                Objects.equals(image, movie.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, type, description);
+        return Objects.hash(id, name, type, description, image);
     }
 
     @Override
@@ -89,6 +107,8 @@ public class Movie {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
+

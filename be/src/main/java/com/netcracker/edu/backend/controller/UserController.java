@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -20,13 +20,13 @@ public class UserController {
         return userService.findAll();
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id) {
         User user = new User();
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(value = "/user/{login}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/login/{login}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserByLogin(@PathVariable(name = "login") String login) {
         User user = userService.findByLogin(login);
         return ResponseEntity.ok(user);

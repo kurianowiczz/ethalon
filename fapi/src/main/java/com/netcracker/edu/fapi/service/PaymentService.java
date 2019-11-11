@@ -7,4 +7,5 @@ import java.util.List;
 public interface PaymentService {
     List<Payment> getAll();
     Payment update(Payment payment);
+    Payment findById(long id);
 }

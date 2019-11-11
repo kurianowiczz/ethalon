@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieSeanceServiceImpl implements MovieSeanceService {
@@ -15,12 +16,13 @@ public class MovieSeanceServiceImpl implements MovieSeanceService {
 
 
     @Override
-    public List<MovieSeance> getAll() {
-        return (List<MovieSeance>) movieSeanceRepository.findAll();
+    public List<MovieSeance> getSeanceByMovieId(Long movieId) {
+        return (List<MovieSeance>) movieSeanceRepository.getSeanceByMovieId(movieId);
     }
 
     @Override
     public MovieSeance findByDateTime(String dateTime) {
+
         return movieSeanceRepository.findByDateTime(dateTime);
     }
 
@@ -32,5 +34,10 @@ public class MovieSeanceServiceImpl implements MovieSeanceService {
     @Override
     public void delete(Long id) {
         movieSeanceRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<MovieSeance> getSeanceById(Long id) {
+        return movieSeanceRepository.findById(id);
     }
 }

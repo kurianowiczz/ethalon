@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/movies")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MoviesController {
 
     @Autowired
@@ -24,7 +25,13 @@ public class MoviesController {
         return movieService.findAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Movie> getMovieById(@PathVariable(name = "id") long id) {
+        Movie movie = movieService.findById(id);
+        return movie != null ? ResponseEntity.ok(movie) : ResponseEntity.notFound().build();
+    }
+
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteMovie(@PathVariable Long id){
         movieService.delete(Long.valueOf(id));
     }

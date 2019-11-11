@@ -9,12 +9,14 @@ public class Movie {
     private String name;
     private String type;
     private String description;
+    private String image;
 
-    public Movie(Long id, String name, String type, String description) {
+    public Movie(Long id, String name, String type, String description, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.description = description;
+        this.image = image;
     }
 
     public Movie() {
@@ -53,6 +55,14 @@ public class Movie {
         this.description = description;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,12 +71,13 @@ public class Movie {
         return Objects.equals(id, movie.id) &&
                 Objects.equals(name, movie.name) &&
                 Objects.equals(type, movie.type) &&
-                Objects.equals(description, movie.description);
+                Objects.equals(description, movie.description) &&
+                Objects.equals(image, movie.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, type, description);
+        return Objects.hash(id, name, type, description, image);
     }
 
     @Override
@@ -76,6 +87,7 @@ public class Movie {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

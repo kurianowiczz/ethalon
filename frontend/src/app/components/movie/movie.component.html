@@ -1,4 +1,11 @@
 <!--<p>{{data.description}}</p>-->
-<img [src]="data.image"/>
-<p>{{data.name}}</p>
-<button (click)="openMovie($event)">Подробнее</button>
+<div class="movie" (mouseleave)="onBlur()" (mouseover)="onFocus()">
+  <img [src]="data.image"/>
+  <p [class]="focused ? 'name invisible': 'name'">{{data.name}}</p>
+
+  <div [class]="focused ? 'description': 'description invisible'">
+    <p>{{data.name}}</p>
+    <span>{{data.description.slice(0, 130) + '...'}}</span>
+    <button [routerLink]="['/movie', data.id]">Подробнее</button>
+  </div>
+</div>

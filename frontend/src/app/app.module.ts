@@ -14,8 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {path: '', component: MoviesListComponent},
-  {path: 'movie', component: MoviePageComponent},
-  {path: 'order', component: OrderSeatsComponent}
+  {path: 'movie/:id', component: MoviePageComponent},
+  {path: 'order/:id', component: OrderSeatsComponent}
 ];
 
 @NgModule({

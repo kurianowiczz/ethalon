@@ -4,17 +4,17 @@ import {IMovie} from '../interfaces/IMovie';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
-  private readonly apiBaseUrl = 'http://localhost:8081';
+  private readonly apiBaseUrl = 'http://localhost:8081/api';
 
   constructor(private http: HttpClient) { }
 
 
   getAll() {
-    return this.http.get<IMovie[]>(`${this.apiBaseUrl}/all/all`);
+    return this.http.get<IMovie[]>(`${this.apiBaseUrl}/movies/all`);
   }
 
   getOne(id) {
-    return this.http.get<IMovie>(`${this.apiBaseUrl}/movies/${id}`);
+    return this.http.get<IMovie>(`${this.apiBaseUrl}/movies/id/${id}`);
   }
 
 

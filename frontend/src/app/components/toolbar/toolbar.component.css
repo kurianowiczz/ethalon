@@ -1,7 +1,7 @@
 .toolbar{
   position: fixed;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr max-content;
   width: 100vw;
   height: 80px;
   z-index: 100;
@@ -10,14 +10,18 @@
 }
 
 .buttons{
-  margin-top: 30px;
+  height: 40px;
+  grid-column: 2;
+  align-self: center;
   text-align: center;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-column-gap: 10px;
+  margin-right: 20px;
 }
 
-.login{
-  margin-right: 10px;
-  margin-left: 32px;
-  padding: 10px;
+.btn{
+  padding: 5px 15px;
   border-radius: 10px;
   background-color: #267df4;
   color: white;
@@ -33,7 +37,7 @@
 }
 
 .sign-in{
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   background-color: #267df4;
   color: white;

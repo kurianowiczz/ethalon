@@ -8,4 +8,6 @@ public interface TicketService {
     List<Ticket> getAll();
     Ticket update(Ticket ticket);
     void delete(Long id);
+    Ticket findById(long id);
+    List<Ticket> getTicketsForSeance(Long seanceId);
 }

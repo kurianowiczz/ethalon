@@ -19,33 +19,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         RestTemplate restTemplate = new RestTemplate();
-        User[] usersResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/user", User[].class);
+        User[] usersResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/all", User[].class);
         return usersResponse == null ? Collections.emptyList() : Arrays.asList(usersResponse);
     }
 
     @Override
     public User findByLogin(String login) {
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/user/login/" + login, User.class);
+        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/login/" + login, User.class);
         return user;
     }
 
     @Override
     public User findById(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(BACKEND_SERVER_URL + "/api/user/" + id, User.class);
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/users/id/" + id, User.class);
     }
 
     @Override
     public User update(User user) {
 //        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/user/", user, User.class).getBody();
+        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/users/", user, User.class).getBody();
     }
 
     @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(BACKEND_SERVER_URL + "api/user/" + id);
+        restTemplate.delete(BACKEND_SERVER_URL + "api/users/id/" + id);
     }
 }

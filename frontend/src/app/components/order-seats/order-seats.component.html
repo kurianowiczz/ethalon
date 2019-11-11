@@ -1,11 +1,49 @@
-<div class="seats-container">
-  <div class="seats" *ngFor="let seat of seats">
-    <div class="row" *ngFor="let row of seats">
-      <div class="colomn" *ngFor="let seat of row">
-        <div class="seat">{{seat}}</div>
+<div class="container">
+
+
+  <div class="seance-container">
+    <p>Сеансы:</p>
+    <div *ngFor="let seance of seances" class="seance" (click)="onSeanceChange(seance)">
+      <p>{{seance.dateTime}} - {{ seance.price }}</p>
+      <div [class]="currentSeance && currentSeance.id === seance.id ? 'control checked' : 'control unchecked'">
+        <div [class]="currentSeance && currentSeance.id === seance.id ? 'inner-control visible' : 'inner-control invisible'"></div>
       </div>
     </div>
   </div>
 
 
+    <div class="seats-container">
+      <div class="row" *ngFor="let row of seats; index as rowIndex" >
+        <div class="column" *ngFor="let seat of row; index as columnIndex" >
+          <div [class]="seat" (click)="processSeat(rowIndex, columnIndex)">
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-buy">
+        <button>Купить</button>
+      </div>
+    </div>
+
+  <div class="seat-history">
+    <div class="history-row">
+      <div class="available"></div>
+      <div class="description">свободно</div>
+    </div>
+
+    <div class="history-row">
+      <div class="reserved"></div>
+      <div class="description">звнято</div>
+    </div>
+
+    <div class="history-row">
+      <div class="processing"></div>
+      <div class="description">в процессе</div>
+    </div>
+  </div>
+
 </div>
+
+
+
+

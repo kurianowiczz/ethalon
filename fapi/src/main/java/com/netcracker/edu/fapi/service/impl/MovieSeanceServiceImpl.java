@@ -14,14 +14,27 @@ import java.util.List;
 public class MovieSeanceServiceImpl implements MovieSeanceService {
 
     @Value("${backend.server.url}")
-    private static String BACKEND_SERVER_URL;
+    private String BACKEND_SERVER_URL;
 
     @Override
     public List<MovieSeance> getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        MovieSeance[] movieSeancesResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/movieSeances/all ", MovieSeance[].class);
+        MovieSeance[] movieSeancesResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/movieSeances/all/{id} ", MovieSeance[].class);
         return movieSeancesResponse == null ? Collections.emptyList() : Arrays.asList(movieSeancesResponse);
+    }
 
+    @Override
+    public MovieSeance findById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(BACKEND_SERVER_URL + "api/movieSeances/id/" + id, MovieSeance.class);
+    }
+
+    @Override
+    public List<MovieSeance> getSeanceByMovieId(Long movieId) {
+        RestTemplate restTemplate = new RestTemplate();
+        MovieSeance[] movieSeancesResponse = restTemplate.getForObject(
+                BACKEND_SERVER_URL + "/api/movieSeances/all/" + movieId, MovieSeance[].class);
+        return movieSeancesResponse == null ? Collections.emptyList() : Arrays.asList(movieSeancesResponse);
     }
 
     @Override

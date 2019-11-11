@@ -22,7 +22,7 @@ public class JournalController {
         return journalService.getAll();
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userId/{userId}", method = RequestMethod.GET)
     public ResponseEntity<Journal> getJournalByUserId(@PathVariable(name = "userId") Long userId){
         Optional<Journal> journal = journalService.getByUserId(userId);
         if(journal.isPresent()){
@@ -32,7 +32,7 @@ public class JournalController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "id/{id}", method = RequestMethod.DELETE)
     public Journal deleteJournal (@PathVariable(name = "id") Long id) {
         return journalService.delete(id);
     }

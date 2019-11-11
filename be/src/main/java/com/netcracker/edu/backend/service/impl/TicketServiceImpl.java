@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -30,4 +31,16 @@ public class TicketServiceImpl implements TicketService {
     public void delete(Long id) {
         ticketRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Ticket> findById(long id) {
+        return ticketRepository.findById(id);
+    }
+
+    @Override
+    public List<Ticket> getTicketsForSeance(Long seanceId) {
+        return ticketRepository.getTicketsForSeance(seanceId);
+    }
+
+
 }
