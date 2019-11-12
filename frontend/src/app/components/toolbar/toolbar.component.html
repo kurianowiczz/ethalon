@@ -6,17 +6,22 @@
 </div>
 
 <app-popup [onClose]="closeSignUp.bind(this)" [isVisible]="showSignUp">
-  <p>email</p>
-  <input type="email">
-  <p>password</p>
-  <input type="password">
-  <button>Зарегистрироваться</button>
+  <h1>Регистрация</h1>
+  <p>Введите email: </p>
+  <input type="text" placeholder="Email">
+  <p>Введите пароль: </p>
+  <input type="password" placeholder="Пароль" inputmode="numeric" required>
+  <input type="submit" class="btn-submit" value="Зарегистрироваться">
+<!--  <button>Зарегистрироваться</button>-->
 </app-popup>
 
 <app-popup [onClose]="closeSignIn.bind(this)" [isVisible]="showSignIn">
-  <p>email</p>
-  <input type="email">
-  <p>password</p>
-  <input type="password">
-  <button>Войти</button>
+  <h1>Авторизация</h1>
+  <p>Введите email: </p>
+  <input type="email" placeholder="Email">
+  <p>Введите пароль: </p>
+  <input type="password" placeholder="Пароль" inputmode="numeric"  required>
+  <div class="btn-popup">
+    <input type="submit" class="btn-submit" value="Войти">
+  </div>
 </app-popup>

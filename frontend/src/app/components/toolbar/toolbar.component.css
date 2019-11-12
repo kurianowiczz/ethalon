@@ -51,3 +51,39 @@
   color: rgba(0, 0, 0, 0.77);
   transition: 1s;
 }
+
+
+app-popup{
+  font-family:  "Arial Black", sans-serif;
+}
+
+input{
+  border-radius: 3px;
+  outline: none;
+  border: 0;
+  width: 100%;
+}
+
+input[type="submit"] {
+  /*background-color: #52D1DC;*/
+  display: block;
+  margin-top: 20px;
+  font-family: "Arial Black", sans-serif;
+  padding: 5px 15px;
+  /*position: relative;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, 0);*/
+  background: transparent;
+  border: 2px solid #9353ff;
+}
+
+.btn-submit:hover {
+  background: #9353ff;
+  font-family: "Arial Black", sans-serif;
+}
+
+
+
+
+
+
