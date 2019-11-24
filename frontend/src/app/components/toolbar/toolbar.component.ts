@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {IUser} from "../../interfaces/IUser";
+import {mockUser} from "../../mocks/user";
 
 @Component({
   selector: 'app-toolbar',
@@ -8,21 +10,21 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent {
   showSignUp: boolean = false;
   showSignIn: boolean = false;
+  user: IUser = mockUser;
 
   openSignUp(){
     this.showSignUp = true;
   }
 
-  closeSignUp(){
+  closeSignUp = () => {
     this.showSignUp = false;
-    console.log(this.showSignUp);
-  }
+  };
 
   openSignIn(){
     this.showSignIn = true;
   }
 
-  closeSignIn(){
+  closeSignIn = () => {
     this.showSignIn = false;
-  }
+  };
 }

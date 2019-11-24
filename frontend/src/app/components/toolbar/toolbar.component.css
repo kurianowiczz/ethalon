@@ -22,19 +22,19 @@
 
 .btn{
   padding: 5px 15px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #52D1DC;
   color: white;
   outline: none;
-  font-family: "Arial Black";
+  font-family: "Arial Black", sans-serif;
   border: none;
 }
 
-.login:hover {
-  background-color: rgba(156, 220, 220, 0.83);
-  color: rgba(0, 0, 0, 0.77);
-  transition: 1s;
-}
+/*.login:hover {*/
+/*  background-color: rgba(156, 220, 220, 0.83);*/
+/*  color: rgba(0, 0, 0, 0.77);*/
+/*  transition: 1s;*/
+/*}*/
 
 .sign-in{
   padding: 10px 20px;
@@ -43,7 +43,7 @@
   color: white;
   outline: none;
   border: none;
-  font-family: "Arial Black";
+  font-family: "Arial Black", sans-serif;
 }
 
 .sign-in:hover {
@@ -51,7 +51,6 @@
   color: rgba(0, 0, 0, 0.77);
   transition: 1s;
 }
-
 
 app-popup{
   font-family:  "Arial Black", sans-serif;
@@ -65,16 +64,17 @@ input{
 }
 
 input[type="submit"] {
-  /*background-color: #52D1DC;*/
   display: block;
   margin-top: 20px;
   font-family: "Arial Black", sans-serif;
   padding: 5px 15px;
-  /*position: relative;*/
-  /*left: 50%;*/
-  /*transform: translate(-50%, 0);*/
   background: transparent;
   border: 2px solid #9353ff;
+  border-radius: 5px;
+}
+
+input[type="password"], [type="text" ]{
+  font-family: "Arial Black", sans-serif;
 }
 
 .btn-submit:hover {
@@ -82,7 +82,20 @@ input[type="submit"] {
   font-family: "Arial Black", sans-serif;
 }
 
+.cash{
+  width: 120px;
+  height: 30px;
+  background-color: #52D1DC;
+  border-radius: 5px;
+  margin-left: 115px;
+  padding: 5px 15px;
+  font-family: "Arial Black", sans-serif;
+  color: black;
+}
 
+.cash p{
+  font-size: 14px;
+}
 
 
 

@@ -1,30 +1,38 @@
 package com.netcracker.edu.backend.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-@Table(name="tickets")
+@Table(name = "tickets")
 public class Ticket {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int line;
     private int seat;
-    private Long seanceId;
 
-    public Ticket(Long id, int line, int seat, Long seanceId) {
-        this.id = id;
-        this.line = line;
-        this.seat = seat;
-        this.seanceId = seanceId;
-    }
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "seanceid")
+    private Seance movieSeance;
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid")
+    private User userid;
 
     public Ticket() {
     }
 
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Ticket(int line, int seat, Seance movieSeance, User userid) {
+        this.line = line;
+        this.seat = seat;
+        this.movieSeance = movieSeance;
+        this.userid = userid;
+    }
+
     public Long getId() {
         return id;
     }
@@ -34,7 +42,7 @@ public class Ticket {
     }
 
     @Basic
-    @Column(name="line")
+    @Column(name = "line")
     public int getLine() {
         return line;
     }
@@ -44,7 +52,7 @@ public class Ticket {
     }
 
     @Basic
-    @Column(name="seat")
+    @Column(name = "seat")
     public int getSeat() {
         return seat;
     }
@@ -54,38 +62,22 @@ public class Ticket {
     }
 
     @Basic
-    @Column(name="seanceId")
-    public Long getSeanceId() {
-        return seanceId;
+    @Column(name = "movieSeance")
+    public Seance getMovieSeance() {
+        return movieSeance;
     }
 
-    public void setSeanceId(Long seanceId) {
-        this.seanceId = seanceId;
+    public void setMovieSeance(Seance movieSeance) {
+        this.movieSeance = movieSeance;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Ticket)) return false;
-        Ticket tickets = (Ticket) o;
-        return line == tickets.line &&
-                seat == tickets.seat &&
-                Objects.equals(id, tickets.id) &&
-                Objects.equals(seanceId, tickets.seanceId);
+    @Basic
+    @Column(name = "userid")
+    public User getUserid() {
+        return userid;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, line, seat, seanceId);
-    }
-
-    @Override
-    public String toString() {
-        return "Tickets{" +
-                "id=" + id +
-                ", line=" + line +
-                ", seat=" + seat +
-                ", seanceId=" + seanceId +
-                '}';
+    public void setUserid(User userid) {
+        this.userid = userid;
     }
 }

@@ -14,12 +14,11 @@ public class MovieServiceImpl implements MovieService {
 
     @Value("${backend.server.url}")
     private String BACKEND_SERVER_URL;
-//    private String backendServerUrl;
 
     @Override
     public List<Movie> findAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Movie[] moviesResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/movies/all ", Movie[].class);
+        Movie[] moviesResponse = restTemplate.getForObject(BACKEND_SERVER_URL + "api/movies/all ", Movie[].class);
         return moviesResponse == null ? Collections.emptyList() : Arrays.asList(moviesResponse);
 
     }
@@ -33,13 +32,13 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(BACKEND_SERVER_URL + "/api/movies/id/" + id);
+        restTemplate.delete(BACKEND_SERVER_URL + "api/movies/id/" + id);
     }
 
     @Override
     public Movie save(Movie movie) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/movies/", movie, Movie.class).getBody();
+        return restTemplate.postForEntity(BACKEND_SERVER_URL + "api/movies/add", movie, Movie.class).getBody();
     }
 
 }

@@ -1,12 +1,10 @@
 <div class="container">
 
-  <div class="poster">
-    <h1>poster</h1>
-  </div>
+<!--    <img src="https://keste.kz/wp-content/uploads/2017/09/maxresdefault.jpg">-->
 
 
   <div class="seance-container">
-    <p>Сеансы:</p>
+    <p>Сеансы - цена:</p>
     <div *ngFor="let seance of seances" class="seance" (click)="onSeanceChange(seance)">
       <p>{{seance.dateTime}} - {{ seance.price }}</p>
       <div [class]="currentSeance && currentSeance.id === seance.id ? 'control checked' : 'control unchecked'">
@@ -44,12 +42,17 @@
     </div>
 
     <div class="btn-buy">
-      <button>Купить</button>
+      <button (click)="onOpenConfirm()">Купить</button>
+
     </div>
   </div>
 
 </div>
 
-
-
-
+<app-popup [isVisible]="showConfirm" [onClose]="onConfirmClose">
+  <p>Подтвердите покупку билетов</p>
+  <div class="confirm-btn">
+    <input (click)="onOrderTickets()" type="submit" class="btn-submit" value="Подтвердить">
+    <input (click)="onConfirmClose()" type="submit" class="btn-submit" value="Отмена">
+  </div>
+</app-popup>

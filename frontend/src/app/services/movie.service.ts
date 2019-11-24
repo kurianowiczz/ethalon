@@ -17,9 +17,8 @@ export class MoviesService {
     return this.http.get<IMovie>(`${this.apiBaseUrl}/movies/id/${id}`);
   }
 
-
   create(movie: IMovie) {
-    return this.http.post<IMovie>(`${this.apiBaseUrl}/movies`, {movie});
+    return this.http.post<IMovie>(`${this.apiBaseUrl}/movies/add`, movie);
   }
 
 
@@ -29,7 +28,6 @@ export class MoviesService {
 
   update(movie: IMovie) {
     return this.http.put<IMovie>(`${this.apiBaseUrl}/movies/${movie.id}`, {movie});
-
   }
 
 }

@@ -1,26 +1,32 @@
 <div class="toolbar">
+  <div class="cash">
+    <p>Ваш баланс: {{user.cash}}</p>
+  </div>
+
   <div class="buttons">
     <button class="btn" (click)="openSignIn()">Вход</button>
     <button class="btn" (click)="openSignUp()">Регистрация</button>
   </div>
+
 </div>
 
-<app-popup [onClose]="closeSignUp.bind(this)" [isVisible]="showSignUp">
+
+
+<app-popup [onClose]="closeSignUp" [isVisible]="showSignUp">
   <h1>Регистрация</h1>
   <p>Введите email: </p>
   <input type="text" placeholder="Email">
   <p>Введите пароль: </p>
   <input type="password" placeholder="Пароль" inputmode="numeric" required>
   <input type="submit" class="btn-submit" value="Зарегистрироваться">
-<!--  <button>Зарегистрироваться</button>-->
 </app-popup>
 
-<app-popup [onClose]="closeSignIn.bind(this)" [isVisible]="showSignIn">
+<app-popup [onClose]="closeSignIn" [isVisible]="showSignIn">
   <h1>Авторизация</h1>
   <p>Введите email: </p>
-  <input type="email" placeholder="Email">
+  <input type="text" placeholder="Email">
   <p>Введите пароль: </p>
-  <input type="password" placeholder="Пароль" inputmode="numeric"  required>
+  <input type="password" placeholder="Пароль" inputmode="numeric" required>
   <div class="btn-popup">
     <input type="submit" class="btn-submit" value="Войти">
   </div>

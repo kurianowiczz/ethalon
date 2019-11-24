@@ -17,10 +17,6 @@ public class MoviesController {
     private MovieService movieService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-//    public ResponseEntity<List<Movie>> getAllMovies(){
-//
-//        return ResponseEntity.ok(movieService.findAll());
-//    }
     public List<Movie> getAllMovies(){
         return movieService.findAll();
     }
@@ -36,7 +32,7 @@ public class MoviesController {
         movieService.delete(Long.valueOf(id));
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
         if (movie != null) {
             return ResponseEntity.ok(movieService.save(movie));

@@ -42,7 +42,8 @@ img{
 
 .description button {
   background: transparent;
-  border: 2px solid #9353ff;
+  border: 2px solid darkslateblue;
+  outline: none;
   padding: 5px 10px;
   border-radius: 5px;
   color: white;
@@ -54,7 +55,7 @@ img{
 }
 
 .description button:hover {
-  background: #9353ff;
+  background: darkslateblue;
   font-family: "Arial Black", sans-serif;
 }
 

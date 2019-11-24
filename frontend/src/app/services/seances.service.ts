@@ -9,7 +9,7 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   getOne(id) {
-    return this.http.get<ISeance[]>(`${this.apiBaseUrl}/movieSeances/all/${id}`);
+    return this.http.get<ISeance[]>(`${this.apiBaseUrl}/seances/id/${id}`);
   }
 
 

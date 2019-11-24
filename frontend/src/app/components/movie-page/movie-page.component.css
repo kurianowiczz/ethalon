@@ -1,8 +1,12 @@
+.movie-page-container{
+  padding: 0 115px 0 115px;
+}
+
 .movie{
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-top: 100px;
-  font-family: "Arial Black";
+  font-family: "Arial Black", sans-serif;
 }
 
 img{
@@ -15,18 +19,24 @@ img{
   justify-content: center;
 }
 
+.info{
+  padding-right: 70px;
+  text-align: justify;
+}
+
 button{
   padding: 10px;
-  border-radius: 10px;
-  background-color: #267df4;
+  border-radius: 5px;
+  background-color: #613cb2;
+  /*border: 2px solid #4c4c4c;*/
+  border: none;
   color: white;
   outline: none;
-  font-family: "Arial Black";
-  border: none;
+  font-family: "Arial Black", sans-serif;
 }
 
 button:hover {
-  background-color: rgba(156, 220, 220, 0.83);
-  color: rgba(0, 0, 0, 0.77);
+  background-color: #52D1DC;
+  color: black;
   transition: 1s;
 }

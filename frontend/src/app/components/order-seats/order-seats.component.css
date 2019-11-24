@@ -1,11 +1,21 @@
+.container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 130px 200px 0 200px;
+
+}
+
 .seance-container {
-  width: 400px;
+  /*width: 400px;*/
   /*margin: auto;*/
   /*padding: 50px;*/
-  }
+  /*margin: 0 115px 0 115px;*/
+  padding: 0 60px 0 60px;
+}
 
 .seance-container p{
   font-family: "Arial Black", sans-serif;
+  text-align: center;
 }
 
 .seance {
@@ -36,11 +46,11 @@
 }
 
 .checked {
-  border: 2px solid greenyellow;
+  border: 2px solid darkslateblue;
 }
 
 .unchecked {
-  border: 2px solid grey;
+  border: 2px solid #5F7367;
 }
 
 .inner-control {
@@ -52,7 +62,7 @@
 
 .visible {
   opacity: 1;
-  background-color: greenyellow;
+  background-color: darkslateblue;
 }
 
 .invisible {
@@ -72,11 +82,11 @@
 
 .seats-container{
   margin: auto;
-  width: 150px;
-  height: 250px;
+  /*width: 150px;*/
+  /*height: 250px;*/
   display: grid;
   grid-template-rows: repeat(5, 1fr);
-  grid-row-gap: 10px;
+  grid-row-gap: 15px;
   align-items: center;
   justify-content: center;
 }
@@ -86,8 +96,8 @@
 /*}*/
 
 .available{
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   background-color: #bbbbbf;
   border-radius: 5px 10px 5px 10px;
   cursor: pointer;
@@ -98,7 +108,7 @@
 .reserved{
   width: 30px;
   height: 30px;
-  background-color: #475B5A;
+  background-color: #5F7367;
   cursor: not-allowed;
   border-radius: 5px 10px 5px 10px;
   border: 2px solid black;
@@ -108,7 +118,7 @@
 .processing{
   width: 30px;
   height: 30px;
-  background-color: #c47ac0;
+  background-color: darkslateblue;
   border-radius: 5px 10px 5px 10px;
   cursor: pointer;
   border: 2px solid #4c4c4c;
@@ -135,7 +145,7 @@
 }
 
 .btn-buy button:hover {
-  background: #9353ff;
+  background: darkslateblue;
   color: rgba(0, 0, 0, 0.77);
   transition: 1s;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -148,14 +158,8 @@
   align-self: center;
   justify-self: center;
   font-family: "Arial Black", sans-serif;
-}
-
-
-.container{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding-top: 130px;
-
+  font-size: 13px;
+  margin: 20px 60px 0 60px;
 }
 
 .available p, .reserved p, .processing p {
@@ -177,4 +181,31 @@
   align-self: center;
   justify-self: center;
   margin: auto;
+}
+
+app-popup{
+  font-family:  "Arial Black", sans-serif;
+}
+
+input[type="submit"] {
+  display: block;
+  margin-top: 20px;
+  font-family: "Arial Black", sans-serif;
+  padding: 5px 15px;
+  background: transparent;
+  border: 2px solid darkslateblue;
+  border-radius: 5px;
+}
+
+.btn-submit:hover {
+  background: darkslateblue;
+  font-family: "Arial Black", sans-serif;
+}
+
+.confirm-btn{
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-column-gap: 20px;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,32 +1,30 @@
 package com.netcracker.edu.backend.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
-    private String password;
-    private String role;
-    private double cash;
 
-    public User(Long id, String userName, String password, String role, double cash) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.role = role;
-        this.cash = cash;
-    }
+    private String role;
+    private String username;
+    private String password;
+    private String cash;
 
     public User() {
     }
 
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public User(String role, String username, String password, String cash) {
+        this.role = role;
+        this.username = username;
+        this.password = password;
+        this.cash = cash;
+    }
+
     public Long getId() {
         return id;
     }
@@ -36,27 +34,7 @@ public class User {
     }
 
     @Basic
-    @Column(name="userName")
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    @Basic
-    @Column(name="password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Basic
-    @Column(name="role")
+    @Column(name = "role")
     public String getRole() {
         return role;
     }
@@ -66,40 +44,32 @@ public class User {
     }
 
     @Basic
-    @Column(name="cash")
-    public double getCash() {
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Basic
+    @Column(name = "cash")
+    public String getCash() {
         return cash;
     }
 
-    public void setCash(double cash) {
+    public void setCash(String cash) {
         this.cash = cash;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Double.compare(user.cash, cash) == 0 &&
-                Objects.equals(id, user.id) &&
-                Objects.equals(userName, user.userName) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(role, user.role);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userName, password, role, cash);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", cash=" + cash +
-                '}';
     }
 }

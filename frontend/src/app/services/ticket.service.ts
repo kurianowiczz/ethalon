@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { ITicket } from "../interfaces/ITicket";
-import {IMovie} from "../interfaces/IMovie";
 
 @Injectable({providedIn: 'root'})
 export class TicketService{
@@ -15,7 +14,7 @@ export class TicketService{
     return this.http.get<ITicket[]>(`${this.apiBaseUrl}/tickets/all/${id}`);
   }
 
-  getMovieById(id){
-    return this.http.get<IMovie[]>(`${this.apiBaseUrl}/movies/id/${id}`);
+    sendTickets(tickets: ITicket[]){
+    return this.http.post(`${this.apiBaseUrl}/tickets/`, tickets);
   }
 }

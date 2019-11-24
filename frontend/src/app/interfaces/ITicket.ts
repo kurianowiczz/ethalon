@@ -1,7 +1,7 @@
 export interface ITicket {
-  id: number;
+  id?: number;
   line: number;
   seat: number;
-  seanceId: number;
-  userId: number;
+  seanceid: number;
+  userid: number;
 }

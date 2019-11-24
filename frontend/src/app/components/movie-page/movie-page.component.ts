@@ -23,7 +23,7 @@ export class MoviePageComponent implements OnInit{
     this.route.params.subscribe(async (params) => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       const movie = await this.movieService.getOne(this.id).toPromise();
-      console.log(movie)
+      // console.log(movie);
       this.movie = movie;
 
       // In a real app: dispatch action to load the details here.

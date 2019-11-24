@@ -1,19 +1,19 @@
 package com.netcracker.edu.fapi.models;
 
-import java.util.Objects;
-
 public class Ticket {
 
     private Long id;
     private int line;
     private int seat;
-    private Long seanceId;
+    private User userId;
+    private Seance movieSeance;
 
-    public Ticket(Long id, int line, int seat, Long seanceId) {
+    public Ticket(Long id, int line, int seat, User userId, Seance movieSeance) {
         this.id = id;
         this.line = line;
         this.seat = seat;
-        this.seanceId = seanceId;
+        this.userId = userId;
+        this.movieSeance = movieSeance;
     }
 
     public Ticket() {
@@ -43,37 +43,19 @@ public class Ticket {
         this.seat = seat;
     }
 
-    public Long getSeanceId() {
-        return seanceId;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setSeanceId(Long seanceId) {
-        this.seanceId = seanceId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Ticket)) return false;
-        Ticket tickets = (Ticket) o;
-        return line == tickets.line &&
-                seat == tickets.seat &&
-                Objects.equals(id, tickets.id) &&
-                Objects.equals(seanceId, tickets.seanceId);
+    public Seance getMovieSeance() {
+        return movieSeance;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, line, seat, seanceId);
-    }
-
-    @Override
-    public String toString() {
-        return "Tickets{" +
-                "id=" + id +
-                ", line=" + line +
-                ", seat=" + seat +
-                ", seanceId=" + seanceId +
-                '}';
+    public void setMovieSeance(Seance movieSeance) {
+        this.movieSeance = movieSeance;
     }
 }

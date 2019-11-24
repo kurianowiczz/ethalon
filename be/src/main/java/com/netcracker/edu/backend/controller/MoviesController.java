@@ -7,43 +7,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
 public class MoviesController {
     @Autowired
-    private MovieService service;
+    private MovieService movieService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List getAllMovies() {
-        return service.getAllMovies();
+        return movieService.getAllMovies();
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<Movie> getMovieById(@PathVariable(name = "id") Long id) {
-        Optional<Movie> movie = service.getMovieById(id);
-        if (movie.isPresent()) {
-            return ResponseEntity.ok(movie.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        Movie movie = movieService.getMovieById(id);
+        return ResponseEntity.ok(movie);
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public Movie deleteMovie(@PathVariable(name = "id") Long id) {
-        return service.delete(id);
+        return movieService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public Movie updateMovie(@RequestBody Movie movie) {
-        return service.update(movie);
+        return movieService.update(movie);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST) //?
     public Movie addMovie(@RequestBody Movie movie) {
-
-        return service.addMovie(movie);
+        return movieService.addMovie(movie);
     }
+
 
 }

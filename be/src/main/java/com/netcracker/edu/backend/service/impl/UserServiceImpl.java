@@ -20,26 +20,43 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByLogin(String login) {
-
-        return userRepository.findByUserName(login);
-    }
-
-    @Override
-    public Optional<User> findById(Long id) {
-
-        return userRepository.findById(id);
-    }
-
-    @Override
     public User update(User user) {
-
         return userRepository.save(user);
     }
 
     @Override
     public void delete(Long id) {
-
         userRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public User findByUsername(String userName) {
+        return userRepository.findByUsername(userName);
+    }
+
+    @Override
+    public User addUser(User newUser) {
+        //return userRepository.save(newUser);
+//        User user = userRepository.findByUsername(newUser.getUsername());
+//        if(newUser != null){
+//
+//        }
+        return null;
+    }
+
+
+//    @Override
+//    public List<Ticket> getTicketByUserId(Long id) {
+//        return userRepository.getTicketByUserId(id);
+//    }
+
+//    @Override
+//    public List<Ticket> getTicketByUsername(String userName) {
+//        return userRepository.getTicketByUsername(userName);
+//    }
 }

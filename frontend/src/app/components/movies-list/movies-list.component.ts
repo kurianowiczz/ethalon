@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IMovie} from '../../interfaces/IMovie';
 import {MoviesService} from '../../services/movie.service';
 
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
-  styleUrls: ['./movies-list.component.css']
+  styleUrls: ['./movies-list.component.css'],
+
 })
 export class MoviesListComponent implements OnInit {
   movies: IMovie[] = [
@@ -62,11 +63,37 @@ export class MoviesListComponent implements OnInit {
     //   image: 'https://st.cherinfo.ru/afisha/main/4085.jpg'}
   ];
 
-    // private movieService = new MoviesService();
+  showAdding: boolean = false;
+  name: string;
+  type: string;
+  description: string;
+  price: number;
+  image: string;
 
-    constructor(private movieService: MoviesService) {
+  constructor(private movieService: MoviesService) {
 
   }
+
+  openAdding(){
+    this.showAdding = true;
+  }
+
+  closeAdding = () => {
+    this.showAdding = false;
+  };
+
+  addMovie = async() => {
+    await this.movieService.create({
+      name: this.name,
+      type: this.type,
+      description: this.description,
+      price: this.price,
+      image: this.image
+    }).toPromise();
+    this.ngOnInit();
+
+  };
+
 
   async ngOnInit() {
     this.movies = await this.movieService.getAll().toPromise();

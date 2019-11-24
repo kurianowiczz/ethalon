@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByLogin(String login) {
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/login/" + login, User.class);
+        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/userName/" + login, User.class);
         return user;
     }
 

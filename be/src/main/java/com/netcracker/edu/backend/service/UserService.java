@@ -7,8 +7,11 @@ import java.util.Optional;
 
 public interface UserService {
     List<User> findAll();
-    User findByLogin(String login);
-    Optional<User> findById(Long id);
     User update(User user);
     void delete(Long id);
+    Optional<User> findById(Long id);
+    User findByUsername(String userName);
+//    List<Ticket> getTicketByUserId(Long id);
+//    List<Ticket> getTicketByUsername(String userName);
+    User addUser(User user);
 }

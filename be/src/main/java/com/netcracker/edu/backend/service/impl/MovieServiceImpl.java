@@ -1,44 +1,43 @@
 package com.netcracker.edu.backend.service.impl;
 
 import com.netcracker.edu.backend.entity.Movie;
-import com.netcracker.edu.backend.repository.MoviesRepository;
+import com.netcracker.edu.backend.repository.MovieRepository;
 import com.netcracker.edu.backend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService {
     @Autowired
-    private MoviesRepository moviesRepository;
+    private MovieRepository movieRepository;
+
 
     @Override
     public List<Movie> getAllMovies() {
-        return (List<Movie>) moviesRepository.findAll();
+        return (List<Movie>) movieRepository.findAll();
     }
 
     @Override
     public Movie addMovie(Movie newMovie) {
-        return moviesRepository.save(newMovie);
+        return movieRepository.save(newMovie);
     }
 
     @Override
     public Movie delete(long id) {
-        moviesRepository.deleteById(id);
+        movieRepository.deleteById(id);
         return null;
     }
 
     @Override
     public Movie update(Movie movie) {
-        moviesRepository.save(movie);
+        movieRepository.save(movie);
         return movie;
     }
 
     @Override
-    public Optional<Movie> getMovieById(Long id) {
-
-        return moviesRepository.findById(id);
+    public Movie getMovieById(Long id) {
+        return movieRepository.findMovieById(id);
     }
 }

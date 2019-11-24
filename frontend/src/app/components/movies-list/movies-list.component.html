@@ -2,4 +2,30 @@
   <div class="movies-list" *ngFor="let movie of movies">
     <app-movie [data]="movie"></app-movie>
   </div>
+  <div class="addingMovie" (click)="openAdding()">
+    <div class="plus">+</div>
+  </div>
+
+  <app-popup [onClose]="closeAdding" [isVisible]="showAdding">
+    <h1>Добавление фильма</h1>
+    <p>Введите название: </p>
+    <input [(ngModel)]="name" type="text" placeholder="Название">
+    <p>Введите жанр: </p>
+    <input [(ngModel)]="type" type="text" placeholder="Жанр">
+    <p>Введите описание: </p>
+    <input [(ngModel)]="description" type="text" placeholder="Описание">
+    <p>Введите цену: </p>
+    <input [(ngModel)]="price" type="text" placeholder="Цена">
+    <p>Вставьте изображение: </p>
+    <input [(ngModel)]="image" type="text" placeholder="Изображение">
+
+    <input type="submit" class="btn-add" (click)="addMovie()" value="Добавить">
+  </app-popup>
+
+<!--  TODO-->
+  <app-popup [onClose]="closeAdding" [isVisible]="showAdding">
+    <p>Успешно добавлен</p>
+  </app-popup>
+
+
 </div>
