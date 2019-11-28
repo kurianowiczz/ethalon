@@ -11,5 +11,6 @@ public interface TicketService {
     List<Ticket> findByMovieSeance(Seance movieSeance);
     Optional<Ticket> findById(long id);
     List<Ticket> save(List<Ticket> tickets);
+    Ticket save(Ticket ticket);
     void delete(Long id);
 }

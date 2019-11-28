@@ -1,6 +1,6 @@
-package com.netcracker.edu.fapi.models;
+package com.netcracker.edu.backend.viewmodel;
 
-public class Ticket {
+public class TicketViewModel {
 
     private Long id;
     private int line;
@@ -8,31 +8,15 @@ public class Ticket {
     private int seanceid;
     private int userid;
 
-    public Ticket(Long id, int line, int seat, int seanceid, int userid) {
+    public TicketViewModel() {
+    }
+
+    public TicketViewModel(Long id, int line, int seat, int seanceid, int userid) {
         this.id = id;
         this.line = line;
         this.seat = seat;
         this.seanceid = seanceid;
         this.userid = userid;
-    }
-
-    public int getSeanceid() {
-        return seanceid;
-    }
-
-    public void setSeanceid(int seanceid) {
-        this.seanceid = seanceid;
-    }
-
-    public int getUserid() {
-        return userid;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
-    public Ticket() {
     }
 
     public Long getId() {
@@ -59,5 +43,19 @@ public class Ticket {
         this.seat = seat;
     }
 
+    public int getSeanceid() {
+        return seanceid;
+    }
 
+    public void setSeanceid(int seanceid) {
+        this.seanceid = seanceid;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
 }

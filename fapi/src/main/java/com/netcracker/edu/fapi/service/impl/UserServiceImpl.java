@@ -2,20 +2,29 @@ package com.netcracker.edu.fapi.service.impl;
 
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-@Service("userService")
-public class UserServiceImpl implements UserService {
+@Service("customUserDetailsService")
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Value("http://localhost:8080/")
     private String BACKEND_SERVER_URL;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @PreAuthorize("hasRole('user')")
     @Override
     public List<User> findAll() {
         RestTemplate restTemplate = new RestTemplate();
@@ -24,9 +33,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByLogin(String login) {
+    public User findByLogin(String userName) {
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/userName/" + login, User.class);
+        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/userName/" + userName, User.class);
         return user;
     }
 
@@ -38,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) {
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/users/", user, User.class).getBody();
     }
@@ -47,5 +56,20 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(BACKEND_SERVER_URL + "api/users/id/" + id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = findByLogin(userName);
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), getAuthority(user));
+    }
+
+    private Set<SimpleGrantedAuthority> getAuthority(User user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        return authorities;
     }
 }

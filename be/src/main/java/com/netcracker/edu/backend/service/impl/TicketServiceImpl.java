@@ -39,10 +39,15 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> save(List<Ticket> tickets) {
-        for(Ticket ticket : tickets) {
+        for (Ticket ticket : tickets) {
             ticketRepository.save(ticket);
         }
         return tickets;
+    }
+
+    @Override
+    public Ticket save(Ticket ticket) {
+        return ticketRepository.save(ticket);
     }
 
     @Override

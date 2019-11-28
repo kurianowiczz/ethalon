@@ -1,6 +1,5 @@
 package com.netcracker.edu.backend.controller;
 
-import com.netcracker.edu.backend.entity.Ticket;
 import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +27,15 @@ public class UserController {
         return user.isPresent() ? ResponseEntity.ok(user.get()) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/user/username/{userName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/{userName}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserByUserName(@PathVariable(name = "userName") String userName) {
         User user = userService.findByUsername(userName);
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public User updateUser(@RequestBody User user) {
-        return userService.addUser(user);
+        return userService.update(user);
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
@@ -55,6 +54,8 @@ public class UserController {
 //        List<Ticket> ticket = userService.getTicketByUsername(userName);
 //        return ResponseEntity.ok(ticket);
 //    }
+
+
 
 }
 
