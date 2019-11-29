@@ -1,4 +1,3 @@
-// export default
 import {IUser} from "../interfaces/IUser";
 
 export const mockUser:IUser = {

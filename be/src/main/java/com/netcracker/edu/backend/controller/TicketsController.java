@@ -1,5 +1,6 @@
 package com.netcracker.edu.backend.controller;
 
+import com.netcracker.edu.backend.converter.TicketConverter;
 import com.netcracker.edu.backend.entity.Seance;
 import com.netcracker.edu.backend.entity.Ticket;
 import com.netcracker.edu.backend.entity.User;
@@ -26,16 +27,20 @@ public class TicketsController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TicketConverter ticketConverter;
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Ticket> getAllTickets() {
         return ticketService.getAllTicket();
     }
 
     @RequestMapping(value = "/all/{seanceId}", method = RequestMethod.GET)
-    public List<Ticket> getAllTicketForSeance(@PathVariable(name = "seanceId") Long seanceId) {
+    public List<TicketViewModel> getAllTicketForSeance(@PathVariable(name = "seanceId") Long seanceId) {
         Seance movieSeance = seanceService.findById(seanceId);
         List<Ticket> tickets = ticketService.findByMovieSeance(movieSeance);
-        return tickets;
+        List<TicketViewModel> ticketViewModels = ticketConverter.convert(tickets);
+        return ticketViewModels;
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)

@@ -6,7 +6,8 @@ import { ISeance } from "../../interfaces/ISeance";
 import { ITicket } from "../../interfaces/ITicket";
 import { mockUser } from '../../mocks/user';
 import { IUser } from "../../interfaces/IUser";
-import {consoleTestResultHandler} from "tslint/lib/test";
+
+
 @Component({
   selector: 'app-order-seats',
   templateUrl: './order-seats.component.html',
@@ -74,7 +75,7 @@ export class OrderSeatsComponent implements OnInit{
         tempProcessing.push({
           seanceid: this.id,
           line,
-          seat, 
+          seat,
           userid: this.user.id
         });
         this.processing = tempProcessing;
