@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
     @PreAuthorize("hasRole('user')")
     @Override
     public List<User> findAll() {
@@ -35,8 +36,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User findByLogin(String userName) {
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/userName/" + userName, User.class);
+        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/login/" + userName, User.class);
         return user;
+    }
+
+    @Override
+    public User findByPassword(String password) {
+        RestTemplate restTemplate = new RestTemplate();
+        User user = restTemplate.getForObject(BACKEND_SERVER_URL + "/api/users/password/" + password, User.class);
+        return user;
+    }
+
+    @Override
+    public User getUserByUserNameAndPassword(String userName, String password) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(BACKEND_SERVER_URL + "api/users/login", userName, User.class).getBody();
     }
 
     @Override
@@ -46,10 +60,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User update(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    public User addUser(User newUser) {
+        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/users/", user, User.class).getBody();
+        return restTemplate.postForEntity(BACKEND_SERVER_URL + "/api/users/add/", newUser, User.class).getBody();
     }
 
     @Override
@@ -64,7 +78,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), getAuthority(user));
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {

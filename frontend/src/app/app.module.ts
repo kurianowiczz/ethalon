@@ -14,6 +14,7 @@ import { PopupComponent } from './components/popup/popup.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {APIInterceptor} from "./interceptors/api-interceptor";
 import {UsersService} from "./services/user.service";
+import {StorageService} from "./services/storage.service";
 
 const routes: Routes = [
   {path: '', component: MoviesListComponent},
@@ -44,7 +45,9 @@ const routes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: APIInterceptor,
     multi: true
-  }],
+  },
+    StorageService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

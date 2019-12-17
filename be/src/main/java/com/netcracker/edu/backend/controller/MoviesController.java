@@ -35,7 +35,7 @@ public class MoviesController {
         return movieService.update(movie);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST) //?
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Movie addMovie(@RequestBody Movie movie) {
         return movieService.addMovie(movie);
     }

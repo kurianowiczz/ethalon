@@ -13,12 +13,12 @@ public class User {
     private String role;
     private String username;
     private String password;
-    private String cash;
+    private double cash;
 
     public User() {
     }
 
-    public User(String role, String username, String password, String cash) {
+    public User(String role, String username, String password, double cash) {
         this.role = role;
         this.username = username;
         this.password = password;
@@ -65,11 +65,11 @@ public class User {
 
     @Basic
     @Column(name = "cash")
-    public String getCash() {
+    public double getCash() {
         return cash;
     }
 
-    public void setCash(String cash) {
+    public void setCash(double cash) {
         this.cash = cash;
     }
 }

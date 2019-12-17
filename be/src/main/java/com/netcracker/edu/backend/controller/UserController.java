@@ -27,21 +27,33 @@ public class UserController {
         return user.isPresent() ? ResponseEntity.ok(user.get()) : ResponseEntity.notFound().build();
     }
 
+//    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//    public ResponseEntity<User> getUserId(@PathVariable(name = "id") Long id) {
+//        User user = userService.getUserById(id);
+//        return ResponseEntity.ok(user);
+//    }
+
     @RequestMapping(value = "/login/{userName}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserByUserName(@PathVariable(name = "userName") String userName) {
         User user = userService.findByUsername(userName);
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public User updateUser(@RequestBody User user) {
-        return userService.update(user);
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public User addUser(@RequestBody User newUser) {
+        return userService.addUser(newUser);
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
     public void deleteUserById(@PathVariable(name = "id") Long id) {
         userService.delete(id);
     }
+
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public User getUserByLoginAndPassword(@RequestBody String userName, @RequestBody String password) {
+//        //return userService.getUserByUserNameAndPassword(userName, password);
+//        return null;
+//    }
 
 //    @RequestMapping(value = "/tickets/{id}", method = RequestMethod.GET)
 //    public ResponseEntity<List<Ticket>> getTicketByUserId(@PathVariable(name = "id") Long id){
@@ -54,7 +66,6 @@ public class UserController {
 //        List<Ticket> ticket = userService.getTicketByUsername(userName);
 //        return ResponseEntity.ok(ticket);
 //    }
-
 
 
 }

@@ -4,6 +4,7 @@ import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.repository.UserRepository;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,14 +41,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(User newUser) {
-        //return userRepository.save(newUser);
-//        User user = userRepository.findByUsername(newUser.getUsername());
-//        if(newUser != null){
-//
-//        }
-        return null;
+    public User addUser(User newUser){
+        //newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+        return userRepository.save(newUser);
     }
+
+    /*@Override
+    public User getUserByUserNameAndPassword(String userName, String password) {
+        return userRepository.getUserByUserNameAndPassword(userName, password);
+    }*/
+
+//    @Override
+//    public User getUserById(Long id) {
+//        return userRepository.getUserById(id);
+//    }
 
 
 //    @Override

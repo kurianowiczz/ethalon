@@ -32,11 +32,12 @@ public class UserController {
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/login/{userName}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/login/{userName}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserByUserName(@PathVariable(name = "userName") String userName) {
         User user = userService.findByLogin(userName);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-    }
+    }*/
+
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/current")
@@ -48,9 +49,9 @@ public class UserController {
     }
 
     @PreAuthorize("isAnonymous()")
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public User saveUser(@RequestBody User user){
-        return userService.update(user);
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
+    public User saveUser(@RequestBody User newUser){
+        return userService.addUser(newUser);
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)

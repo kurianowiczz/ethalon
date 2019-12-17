@@ -13,5 +13,8 @@ public interface UserService {
     User findByUsername(String userName);
 //    List<Ticket> getTicketByUserId(Long id);
 //    List<Ticket> getTicketByUsername(String userName);
-    User addUser(User user);
+    User addUser(User newUser);
+    //User getUserById(Long id);
+    //User getUserByUserNameAndPassword(String userName, String password);
+
 }

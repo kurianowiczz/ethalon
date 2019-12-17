@@ -10,24 +10,30 @@
 
 </div>
 
-
-
 <app-popup [onClose]="closeSignUp" [isVisible]="showSignUp">
   <h1>Регистрация</h1>
   <p>Введите email: </p>
-  <input type="text" placeholder="Email">
+  <input [(ngModel)]="userName" type="text" placeholder="Email">
   <p>Введите пароль: </p>
-  <input type="password" placeholder="Пароль" inputmode="numeric" required>
-  <input type="submit" class="btn-submit" value="Зарегистрироваться">
+  <input [(ngModel)]="password" type="password" placeholder="Пароль" inputmode="numeric" required>
+  <input type="submit" (click)="reg()" class="btn-submit" value="Зарегистрироваться">
+</app-popup>
+
+<app-popup [onClose]="closeSuccess" [isVisible]="success">
+  <h1>Успех</h1>
+</app-popup>
+
+<app-popup [onClose]="closeFail" [isVisible]="fail">
+  <h1>Ошибка</h1>
 </app-popup>
 
 <app-popup [onClose]="closeSignIn" [isVisible]="showSignIn">
   <h1>Авторизация</h1>
   <p>Введите email: </p>
-  <input type="text" placeholder="Email">
+  <input [(ngModel)]="loginModel.username" type="text" placeholder="Email">
   <p>Введите пароль: </p>
-  <input type="password" placeholder="Пароль" inputmode="numeric" required>
+  <input [(ngModel)]="loginModel.password" type="password" placeholder="Пароль" inputmode="numeric" required>
   <div class="btn-popup">
-    <input type="submit" class="btn-submit" value="Войти">
+    <input type="submit" (click)="login()" class="btn-submit" value="Войти">
   </div>
 </app-popup>
