@@ -21,7 +21,32 @@
   background-color: white;
 }
 
+.popup2{
+  z-index: 1200;
+  width: max-content;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+  position: relative;
+  background-color: white;
+}
+
+
 .close{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  transform: rotate(45deg);
+  cursor: pointer;
+  z-index: 1500;
+}
+
+.close2{
   position: absolute;
   top: 20px;
   right: 20px;

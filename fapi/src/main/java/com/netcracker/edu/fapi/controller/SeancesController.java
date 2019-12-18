@@ -4,6 +4,7 @@ import com.netcracker.edu.fapi.models.Seance;
 import com.netcracker.edu.fapi.service.SeanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class SeancesController {
         return seance != null ? ResponseEntity.ok(seance) : ResponseEntity.notFound().build();
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Seance> updateSeance(@RequestBody Seance movieSeance) {
         if (movieSeance != null) {
@@ -40,6 +42,7 @@ public class SeancesController {
         return null;
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteSeance(@PathVariable Long id){
         seanceService.delete(Long.valueOf(id));

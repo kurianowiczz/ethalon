@@ -5,7 +5,7 @@
 
   <div [class]="focused ? 'description': 'description invisible'">
     <p>{{data.name}}</p>
-    <span>{{data.description.slice(0, 130) + '...'}}</span>
+    <span>{{data.description.slice(0, 100) + '...'}}</span>
     <button [routerLink]="['/movie', data.id]">Подробнее</button>
   </div>
 </div>

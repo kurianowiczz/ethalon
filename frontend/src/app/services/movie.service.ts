@@ -23,7 +23,7 @@ export class MoviesService {
 
 
   delete(id) {
-    return this.http.delete(`${this.apiBaseUrl}/movies/${id}`);
+    return this.http.delete(`${this.apiBaseUrl}/movies/id/${id}`);
   }
 
   update(movie: IMovie) {

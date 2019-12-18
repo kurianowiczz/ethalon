@@ -4,6 +4,7 @@ import com.netcracker.edu.fapi.models.Ticket;
 import com.netcracker.edu.fapi.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +27,14 @@ public class TicketsController {
         return ticketService.getTicketsForSeance(seanceId);
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteTicketById(@PathVariable(name = "id") long id) {
 
         ticketService.delete(id);
     }
 
+    @PreAuthorize("hasRole('user')")
     @RequestMapping(method = RequestMethod.POST) //buy tickets
     public List<Ticket> saveTicket(@RequestBody List<Ticket> tickets){
         return ticketService.save(tickets);

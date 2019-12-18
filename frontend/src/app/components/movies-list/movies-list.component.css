@@ -64,6 +64,27 @@ body{
   font-family: "Arial Black", sans-serif;
 }
 
+.minus{
+  background-color: #d4d4d8;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  /*opacity: 0.5;*/
+  font-size: 50px;
+  border-radius: 10px;
+  color: white;
+  outline: none;
+  font-family: "Arial Black", sans-serif;
+  border: none;
+  height: 266px;
+  cursor: pointer;
+}
+
+.minus:hover{
+  color: darkslateblue;
+  font-family: "Arial Black", sans-serif;
+}
+
 app-popup{
   font-family:  "Arial Black", sans-serif;
 }
@@ -94,5 +115,14 @@ input[type="text"]{
   font-family: "Arial Black", sans-serif;
 }
 
+.btn-minus:hover {
+  background: darkslateblue;
+  font-family: "Arial Black", sans-serif;
+}
+
+.alert-danger{
+  background: darkslateblue;
+  font-family: "Arial Black", sans-serif;
+}
 
 

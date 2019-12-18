@@ -4,7 +4,7 @@ import {IUser} from "../interfaces/IUser";
 @Injectable()
 export class StorageService {
   private readonly TOKEN_KEY: string = "token";
-  private readonly CURRENT_USER: string = "currentUser";
+  private readonly CURRENT_USER: string = "user";
 
   private currentUser: IUser;
 

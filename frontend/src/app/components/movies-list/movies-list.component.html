@@ -5,6 +5,10 @@
   <div class="addingMovie" (click)="openAdding()">
     <div class="plus">+</div>
   </div>
+  <div class="deleteMovie" (click)="openDel()" >
+    <div class="minus">-</div>
+  </div>
+
 
   <app-popup [onClose]="closeAdding" [isVisible]="showAdding">
     <h1>Добавление фильма</h1>
@@ -14,18 +18,36 @@
     <input [(ngModel)]="type" type="text" placeholder="Жанр">
     <p>Введите описание: </p>
     <input [(ngModel)]="description" type="text" placeholder="Описание">
-    <p>Введите цену: </p>
-    <input [(ngModel)]="price" type="text" placeholder="Цена">
+
+    <div class="form-group">
+      <p>Введите цену: </p>
+      <input class="form-control" type="text" name="price" [(ngModel)]="price" #text="ngModel"
+             placeholder="Цена" required pattern="[0-9]{9}"/>
+      <div [hidden]="text.valid || text.untouched" class="alert-danger">
+        <p>Некорректная цена</p>
+      </div>
+    </div>
+
     <p>Вставьте изображение: </p>
     <input [(ngModel)]="image" type="text" placeholder="Изображение">
 
     <input type="submit" class="btn-add" (click)="addMovie()" value="Добавить">
   </app-popup>
 
-<!--  TODO-->
-<!--  <app-popup [onClose]="closeAdding" [isVisible]="showAdding">-->
-<!--    <p>Успешно добавлен</p>-->
-<!--  </app-popup>-->
+  <app-popup [onClose]="closeSuccess" [isVisible]="success">
+    <h1>Успех</h1>
+  </app-popup>
 
+  <app-popup [onClose]="closeFail" [isVisible]="fail">
+    <h1>Ошибка</h1>
+  </app-popup>
+
+  <app-popup [onClose]="closeDel" [isVisible]="showDel">
+    <h1>Удаление фильма</h1>
+    <p>Введите порядковый номер: </p>
+    <input [(ngModel)]="id" type="text" placeholder="Номер">
+
+    <input type="submit" class="btn-minus" (click)="deleteMovie()" value="Удалить">
+  </app-popup>
 
 </div>

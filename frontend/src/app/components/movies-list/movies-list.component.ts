@@ -64,6 +64,11 @@ export class MoviesListComponent implements OnInit {
   ];
 
   showAdding: boolean = false;
+  showDel: boolean = false;
+  success: boolean = false;
+  fail: boolean = false;
+
+  id: number;
   name: string;
   type: string;
   description: string;
@@ -74,12 +79,38 @@ export class MoviesListComponent implements OnInit {
 
   }
 
-  openAdding(){
+  openAdding = () => {
     this.showAdding = true;
-  }
+  };
 
   closeAdding = () => {
     this.showAdding = false;
+  };
+
+  openDel = () => {
+    this.showDel = true;
+  };
+
+  closeDel = () => {
+    this.showDel = false;
+  };
+
+  openSuccess = () => {
+    this.success = true;
+  };
+
+  closeSuccess = () => {
+    this.success = false;
+    this.closeAdding();
+  };
+
+  openFail = () => {
+    this.fail = true;
+  };
+
+  closeFail = () => {
+    this.fail = false;
+    this.closeAdding();
   };
 
   addMovie = async() => {
@@ -91,12 +122,20 @@ export class MoviesListComponent implements OnInit {
       image: this.image
     }).toPromise();
     this.ngOnInit();
+    this.openSuccess();
+
+  };
+
+  deleteMovie = async() => {
+    await this.movieService.delete(this.id).toPromise();
+    this.ngOnInit();
 
   };
 
 
   async ngOnInit() {
     this.movies = await this.movieService.getAll().toPromise();
+
   }
 
 }

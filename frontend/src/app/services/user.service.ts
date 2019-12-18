@@ -17,9 +17,9 @@ export class UsersService {
     return this.http.get<IUser>(`${this.apiBaseUrl}/users/id/${id}`);
   }
 
-  create(user:{userName: string; password: string}) {
+  create(user:{username: string; password: string}) {
     return this.http.post<IUser>(`${this.apiBaseUrl}/users/add`,
-      {password: user.password, username: user.userName, role: 'user', cash: 1});
+      {password: user.password, username: user.username, role: 'user', cash: 1});
   }
 
   generateToken(login: ILoginModel): Observable<AuthToken> {

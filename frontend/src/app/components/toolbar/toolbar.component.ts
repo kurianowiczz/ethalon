@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../interfaces/IUser";
-import {mockUser} from "../../mocks/user";
+// import {mockUser} from "../../mocks/user";
 import {UsersService, AuthToken} from "../../services/user.service";
 import {ILoginModel} from "../../interfaces/ILoginModel";
 import {StorageService} from "../../services/storage.service";
@@ -15,8 +15,14 @@ export class ToolbarComponent {
   showSignIn: boolean = false;
   success: boolean = false;
   fail: boolean = false;
-  user: IUser = mockUser;
+  showTickets: boolean = false;
+  successLogin: boolean = false;
+  failLogin: boolean = false;
+  showLogout: boolean = false;
+  successLogout: boolean = false;
+  failLogout: boolean = false;
 
+  user: IUser | null = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
   userName: string;
   password: string;
 
@@ -62,14 +68,71 @@ export class ToolbarComponent {
     this.closeSignUp();
   };
 
+  openTickets = () => {
+    this.showTickets = true;
+  };
+
+  closeTickets = () => {
+    this.showTickets = false;
+  };
+
+  openSuccessLogin = () => {
+    this.successLogin = true;
+  };
+
+  closeSuccessLogin = () => {
+    this.successLogin = false;
+    this.closeSignUp();
+  };
+
+  openFailLogin = () => {
+    this.failLogin = true;
+  };
+
+  closeFailLogin = () => {
+    this.failLogin = false;
+    this.closeSignUp();
+  };
+
+  openLogout() {
+    this.showLogout = true;
+  }
+
+  closeLogout = () => {
+    this.showLogout = false;
+  };
+
+  openSuccessLogout = () => {
+    this.success = true;
+  };
+
+  closeSuccessLogout = () => {
+    this.success = false;
+    this.closeSignUp();
+  };
+
+  openFailLogout = () => {
+    this.fail = true;
+  };
+
+  closeFailLogout = () => {
+    this.fail = false;
+    this.closeSignUp();
+  };
+
   reg() {
+    if (!this.validate(this.userName, this.password)){
+      this.openFail();
+      return;
+    }
     this.userService.create({
-      userName: this.userName,
+      username: this.userName,
       password: this.password
     })
       .subscribe(
         (user) => {
           localStorage.setItem('user', JSON.stringify(user));
+          this.user = user;
           this.openSuccess();
         },
         (error) => {
@@ -77,6 +140,11 @@ export class ToolbarComponent {
           this.openFail();
         });
 
+  }
+
+  validate(userName: string, password: string) {
+    return userName.match(/[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}/) &&
+      password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/);
   }
 
   // register = async() => {
@@ -91,6 +159,10 @@ export class ToolbarComponent {
   // };
 
   login() {
+    if (!this.validate(this.loginModel.username, this.loginModel.password)){
+      this.openFailLogin();
+      return;
+    }
     this.userService.generateToken(this.loginModel)
       .subscribe((authToken: AuthToken) => {
         if (authToken.token) {
@@ -98,30 +170,29 @@ export class ToolbarComponent {
           this.userService.getAuthorizedUser()
             .subscribe((userModel: IUser) => {
               this.storageService.setCurrentUser(userModel);
+              this.user = userModel;
             });
           this.closeSignIn();
+          this.openSuccessLogin();
+
         }
       }, (error) => {
         if (error.status === 401) {
           this.showCheckYourSetDataAlert = true;
         } else {
-          alert(error.message);
+          //alert(error.message);
+          this.openFailLogin();
         }
       });
   }
 
   logout() {
+    this.user = null;
     this.storageService.clearToken();
     this.storageService.setCurrentUser(null);
+    // this.showLogout = false;
+    this.openSuccessLogout();
   }
-
-  /*test() {
-    this.userService.getOne(1).subscribe(value =>
-    localStorage.setItem("token", value);
-    this.userService.getCurentuser().sbcrive()
-
-    )
-  }*/
 
 
   async ngOnInit() {

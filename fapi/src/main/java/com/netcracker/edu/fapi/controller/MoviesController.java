@@ -4,6 +4,7 @@ import com.netcracker.edu.fapi.models.Movie;
 import com.netcracker.edu.fapi.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,11 +28,13 @@ public class MoviesController {
         return movie != null ? ResponseEntity.ok(movie) : ResponseEntity.notFound().build();
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteMovie(@PathVariable Long id){
         movieService.delete(Long.valueOf(id));
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
         if (movie != null) {
