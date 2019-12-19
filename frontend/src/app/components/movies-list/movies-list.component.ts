@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {IMovie} from '../../interfaces/IMovie';
 import {MoviesService} from '../../services/movie.service';
+import {IUser} from "../../interfaces/IUser";
+import emitter from "../../utils/eventEmitter";
 
 @Component({
   selector: 'app-movies-list',
@@ -75,6 +77,8 @@ export class MoviesListComponent implements OnInit {
   price: number;
   image: string;
 
+  user: IUser | null = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+
   constructor(private movieService: MoviesService) {
 
   }
@@ -135,7 +139,9 @@ export class MoviesListComponent implements OnInit {
 
   async ngOnInit() {
     this.movies = await this.movieService.getAll().toPromise();
-
+    emitter.subscribe('CHANGE_USER', () => {
+      this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+    });
   }
 
 }

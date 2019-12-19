@@ -1,6 +1,6 @@
 export interface ISeance {
   id: number;
   movieId: number;
-  dateTime: Date | string;
+  datetime: Date | string;
   price: number;
 }

@@ -4,13 +4,15 @@ import {IUser} from "../../interfaces/IUser";
 import {UsersService, AuthToken} from "../../services/user.service";
 import {ILoginModel} from "../../interfaces/ILoginModel";
 import {StorageService} from "../../services/storage.service";
+import {HttpParams} from "@angular/common/http";
+import emitter from "../../utils/eventEmitter";
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
   showSignUp: boolean = false;
   showSignIn: boolean = false;
   success: boolean = false;
@@ -132,6 +134,7 @@ export class ToolbarComponent {
       .subscribe(
         (user) => {
           localStorage.setItem('user', JSON.stringify(user));
+          emitter.emit('CHANGE_USER');
           this.user = user;
           this.openSuccess();
         },
@@ -170,6 +173,7 @@ export class ToolbarComponent {
           this.userService.getAuthorizedUser()
             .subscribe((userModel: IUser) => {
               this.storageService.setCurrentUser(userModel);
+              emitter.emit('CHANGE_USER');
               this.user = userModel;
             });
           this.closeSignIn();
@@ -180,7 +184,6 @@ export class ToolbarComponent {
         if (error.status === 401) {
           this.showCheckYourSetDataAlert = true;
         } else {
-          //alert(error.message);
           this.openFailLogin();
         }
       });
@@ -190,13 +193,21 @@ export class ToolbarComponent {
     this.user = null;
     this.storageService.clearToken();
     this.storageService.setCurrentUser(null);
-    // this.showLogout = false;
+    this.showLogout = false;
+    emitter.emit('CHANGE_USER');
     this.openSuccessLogout();
   }
 
 
   async ngOnInit() {
-    //this.user = await this.userService.getOne(id).toPromise();
+    emitter.subscribe('CHANGE_USER', () => {
+      this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+    });
   }
+
+  // update(id: number, user: IUser){
+  //   const urlParams = new HttpParams().set("id", id.toString());
+  //   return this.http.put(this.url)
+  // }
 
 }

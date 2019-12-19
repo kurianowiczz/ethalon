@@ -6,7 +6,7 @@
   <div class="seance-container">
     <p>Сеансы - цена:</p>
     <div *ngFor="let seance of seances" class="seance" (click)="onSeanceChange(seance)">
-      <p>{{seance.dateTime}} - {{ seance.price }}</p>
+      <p>{{ seance.datetime }} - {{ seance.price }}</p>
       <div [class]="currentSeance && currentSeance.id === seance.id ? 'control checked' : 'control unchecked'">
         <div [class]="currentSeance && currentSeance.id === seance.id ? 'inner-control visible' : 'inner-control invisible'"></div>
       </div>
@@ -59,5 +59,4 @@
 
 <!--<app-popup [isVisible]="showConfirm" [onClose]="onConfirmClose">-->
 <!--  <p>Билеты успешно приобретены!</p>-->
-<!--  <div><img src="https://images.golos.io/DQmNRMBVydcqGs3B4Q99pSFvrHUQVAvcQhfxWjgZrzLyYCv/7-effective-ways-deal-haters-7.jpg"></div>-->
 <!--</app-popup>-->

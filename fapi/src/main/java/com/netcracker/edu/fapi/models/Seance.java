@@ -6,13 +6,13 @@ public class Seance {
 
     private Long id;
     private Long movieId;
-    private String dateTime;
+    private String datetime;
     private double price;
 
-    public Seance(Long id, Long movieId, String dateTime, double price) {
+    public Seance(Long id, Long movieId, String datetime, double price) {
         this.id = id;
         this.movieId = movieId;
-        this.dateTime = dateTime;
+        this.datetime = datetime;
         this.price = price;
     }
 
@@ -35,12 +35,12 @@ public class Seance {
         this.movieId = movieId;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDatetime(String dateTime) {
+        this.datetime = datetime;
     }
 
     public double getPrice() {
@@ -59,12 +59,12 @@ public class Seance {
         return Double.compare(that.price, price) == 0 &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(movieId, that.movieId) &&
-                Objects.equals(dateTime, that.dateTime);
+                Objects.equals(datetime, that.datetime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, movieId, dateTime, price);
+        return Objects.hash(id, movieId, datetime, price);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Seance {
         return "MovieSeances{" +
                 "id=" + id +
                 ", movieId=" + movieId +
-                ", dateTime='" + dateTime + '\'' +
+                ", datetime='" + datetime + '\'' +
                 ", price=" + price +
                 '}';
     }

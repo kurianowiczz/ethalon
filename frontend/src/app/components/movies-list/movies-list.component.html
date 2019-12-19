@@ -2,10 +2,10 @@
   <div class="movies-list" *ngFor="let movie of movies">
     <app-movie [data]="movie"></app-movie>
   </div>
-  <div class="addingMovie" (click)="openAdding()">
+  <div class="addingMovie" *ngIf="user && user.role === 'admin'" (click)="openAdding()">
     <div class="plus">+</div>
   </div>
-  <div class="deleteMovie" (click)="openDel()" >
+  <div class="deleteMovie" *ngIf="user && user.role === 'admin'" (click)="openDel()" >
     <div class="minus">-</div>
   </div>
 
@@ -22,7 +22,7 @@
     <div class="form-group">
       <p>Введите цену: </p>
       <input class="form-control" type="text" name="price" [(ngModel)]="price" #text="ngModel"
-             placeholder="Цена" required pattern="[0-9]{9}"/>
+             placeholder="Цена" required pattern="[0-10a-z_]"/>
       <div [hidden]="text.valid || text.untouched" class="alert-danger">
         <p>Некорректная цена</p>
       </div>
