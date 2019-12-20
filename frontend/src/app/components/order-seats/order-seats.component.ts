@@ -6,6 +6,8 @@ import { ISeance } from "../../interfaces/ISeance";
 import { ITicket } from "../../interfaces/ITicket";
 import { mockUser } from '../../mocks/user';
 import { IUser } from "../../interfaces/IUser";
+import emitter from "../../utils/eventEmitter";
+import {UsersService} from "../../services/user.service";
 
 
 @Component({
@@ -20,12 +22,14 @@ export class OrderSeatsComponent implements OnInit{
   seats: string[][] = new Array(5).fill(new Array(5).fill('available'));
   currentSeance: ISeance;
   processing: ITicket[] = [];
-  user: IUser = mockUser;
+  user: IUser | null = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+
   showConfirm: boolean = false;
 
   constructor(private orderService: OrderService,
               private ticketService: TicketService,
-              public route: ActivatedRoute) {
+              public route: ActivatedRoute,
+              private userService: UsersService) {
 
   }
 
@@ -40,12 +44,9 @@ export class OrderSeatsComponent implements OnInit{
       }
     });
 
-    // this.route.params.subscribe(async (params) => {
-    //   this.id = +params['id']; // (+) converts string 'id' to a number
-    //   const movies = await this.ticketService.getMovieById(this.id).toPromise();
-    //   movies.forEach(el => console.log(el));
-    //   this.movies = movies;
-    //   });
+    emitter.subscribe('CHANGE_USER', () => {
+      this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+    });
   }
 
   async onSeanceChange(value) {
@@ -64,41 +65,44 @@ export class OrderSeatsComponent implements OnInit{
   }
 
   processSeat(line, seat) {
-
-    switch(this.seats[line][seat]) {
-      case 'available': {
-        const tempSeats = [...this.seats];
-        console.log(tempSeats);
-        tempSeats[line][seat] = 'processing';
-        this.seats = tempSeats;
-        const tempProcessing = [...this.processing];
-        tempProcessing.push({
-          seanceid: this.id,
-          line,
-          seat,
-          userid: this.user.id
-        });
-        this.processing = tempProcessing;
-      } break;
-      case 'processing': {
-        const tempSeats = [...this.seats];
-        tempSeats[line][seat] = 'available';
-        this.seats = tempSeats;
-        this.processing = this.processing
-          .filter(
-            (ticket) =>
-              (
-                ticket.line !== line
-                && ticket.seat !== seat
-              ) || ticket.seat !== seat
-              || ticket.line !== line
-          );
-      } break;
-      default: break;
+    if (this.user) {
+      switch (this.seats[line][seat]) {
+        case 'available': {
+          const tempSeats = [...this.seats];
+          console.log(tempSeats);
+          tempSeats[line][seat] = 'processing';
+          this.seats = tempSeats;
+          const tempProcessing = [...this.processing];
+          tempProcessing.push({
+            seanceid: this.id,
+            line,
+            seat,
+            userid: this.user.id
+          });
+          this.processing = tempProcessing;
+        }
+          break;
+        case 'processing': {
+          const tempSeats = [...this.seats];
+          tempSeats[line][seat] = 'available';
+          this.seats = tempSeats;
+          this.processing = this.processing
+            .filter(
+              (ticket) =>
+                (
+                  ticket.line !== line
+                  && ticket.seat !== seat
+                ) || ticket.seat !== seat
+                || ticket.line !== line
+            );
+        }
+          break;
+        default:
+          break;
+      }
+      console.log(this.processing);
     }
-    console.log(this.processing);
   }
-
   // processSeat(line, seat) {
   //   switch(this.seats[line][seat]) {
   //     case 'available': {
@@ -126,6 +130,14 @@ export class OrderSeatsComponent implements OnInit{
 
   onOrderTickets = async () => {
     await this.ticketService.sendTickets(this.processing).toPromise();
+    if (this.user) {
+      this.userService.getOne(this.user.id).subscribe((user) => {
+        this.user = user;
+        localStorage.setItem('user', JSON.stringify(user));
+        emitter.emit('CHANGE_USER');
+
+      });
+    }
   }
 
 }

@@ -63,9 +63,11 @@ public class TicketsController {
             ticketNew.setSeat(ticket.getSeat());
             ticketNew.setMovieSeance(seance);
             ticketNew.setUserid(user);
-            user.setCash(user.getCash() - seance.getPrice());
-            ticketService.save(ticketNew);
-            userService.update(user);
+            if (seance.getPrice() <= user.getCash()) {
+                user.setCash(user.getCash() - seance.getPrice());
+                ticketService.save(ticketNew);
+                userService.update(user);
+            }
         });
         return null;
     }

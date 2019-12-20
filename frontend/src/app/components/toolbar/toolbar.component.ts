@@ -23,8 +23,8 @@ export class ToolbarComponent implements OnInit {
   showLogout: boolean = false;
   successLogout: boolean = false;
   failLogout: boolean = false;
-
   user: IUser | null = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+
   userName: string;
   password: string;
 

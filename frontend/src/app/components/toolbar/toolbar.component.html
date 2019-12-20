@@ -4,7 +4,7 @@
       <button class="btn">Ваш баланс: {{user.cash}}</button>
     </div>
     <div class="tickets" *ngIf="user">
-      <button class="btn" (click)="openTickets()">Ваши билеты</button>
+<!--      <button class="btn" (click)="openTickets()">Ваши билеты</button>-->
     </div>
   </div>
 
@@ -16,10 +16,10 @@
 
 </div>
 
-<app-popup [onClose]="closeTickets" [isVisible]="showTickets">
-  <h1>Купленные билеты</h1>
+<!--<app-popup [onClose]="closeTickets" [isVisible]="showTickets">-->
+<!--  <h1>Купленные билеты</h1>-->
 
-</app-popup>
+<!--</app-popup>-->
 
 <app-popup [onClose]="closeSignUp" [isVisible]="showSignUp">
   <form (submit)="reg()">
